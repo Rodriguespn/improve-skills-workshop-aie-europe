@@ -32,26 +32,31 @@ export default function ReportsPage() {
     setError(null);
     setViewExists(false);
 
-    const supabase = getSupabase();
-    await setUserContext(supabase, user.id);
+    try {
+      const supabase = getSupabase();
+      await setUserContext(supabase, user.id);
 
-    const { data, error: queryError } = await supabase
-      .from("department_stats")
-      .select("*");
+      const { data, error: queryError } = await supabase
+        .from("department_stats")
+        .select("*");
 
-    if (queryError) {
-      if (
-        queryError.message?.includes("does not exist") ||
-        queryError.code === "42P01"
-      ) {
-        setViewExists(false);
+      if (queryError) {
+        if (
+          queryError.message?.includes("does not exist") ||
+          queryError.code === "42P01"
+        ) {
+          setViewExists(false);
+        } else {
+          setError(queryError.message);
+          setViewExists(false);
+        }
       } else {
-        setError(queryError.message);
-        setViewExists(false);
+        setStats(data ?? []);
+        setViewExists(true);
       }
-    } else {
-      setStats(data ?? []);
-      setViewExists(true);
+    } catch {
+      // Supabase not running or network error — show empty state
+      setViewExists(false);
     }
 
     setLoading(false);

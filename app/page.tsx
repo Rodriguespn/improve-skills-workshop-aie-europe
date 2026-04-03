@@ -19,23 +19,27 @@ export default function DashboardPage() {
     setProfile(null);
     setReviews([]);
 
-    const supabase = getSupabase();
-    await setUserContext(supabase, user.id);
+    try {
+      const supabase = getSupabase();
+      await setUserContext(supabase, user.id);
 
-    const { data: profileData } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single();
+      const { data: profileData } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
 
-    const { data: reviewsData } = await supabase
-      .from("performance_reviews")
-      .select("*, reviewer:profiles!performance_reviews_reviewer_id_fkey(*)")
-      .eq("reviewee_id", user.id)
-      .order("created_at", { ascending: false });
+      const { data: reviewsData } = await supabase
+        .from("performance_reviews")
+        .select("*, reviewer:profiles!performance_reviews_reviewer_id_fkey(*)")
+        .eq("reviewee_id", user.id)
+        .order("created_at", { ascending: false });
 
-    setProfile(profileData ?? null);
-    setReviews(reviewsData ?? []);
+      setProfile(profileData ?? null);
+      setReviews(reviewsData ?? []);
+    } catch {
+      // Supabase not running
+    }
     setLoading(false);
   }, []);
 

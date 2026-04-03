@@ -16,16 +16,20 @@ export default function DirectoryPage() {
     setLoading(true);
     setProfiles([]);
 
-    const supabase = getSupabase();
-    await setUserContext(supabase, user.id);
+    try {
+      const supabase = getSupabase();
+      await setUserContext(supabase, user.id);
 
-    const { data } = await supabase
-      .from("profiles")
-      .select("*")
-      .order("department")
-      .order("full_name");
+      const { data } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("department")
+        .order("full_name");
 
-    setProfiles(data ?? []);
+      setProfiles(data ?? []);
+    } catch {
+      // Supabase not running
+    }
     setLoading(false);
   }, []);
 
