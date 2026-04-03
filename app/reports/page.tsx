@@ -43,7 +43,9 @@ export default function ReportsPage() {
       if (queryError) {
         if (
           queryError.message?.includes("does not exist") ||
-          queryError.code === "42P01"
+          queryError.message?.includes("Could not find") ||
+          queryError.code === "42P01" ||
+          queryError.code === "PGRST204"
         ) {
           setViewExists(false);
         } else {
