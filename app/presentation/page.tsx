@@ -507,75 +507,61 @@ export default function Presentation() {
           </div>
         </Slide>
 
-        {/* ─── Slide 6: THE PLAYGROUND — Split Screen Demo ─── */}
-        <Slide active={current === 6} noPadding>
-          <div className="flex flex-col h-full">
-            {/* Split screen */}
-            <div className="flex flex-1 min-h-0">
-              {/* LEFT HALF — Claudia */}
-              <div className="flex-1 flex flex-col">
-                {/* Header */}
-                <div className="flex items-center gap-3 px-6 py-3 bg-red-400/10 border-b border-red-400/20">
+        {/* ─── Slide 6: DEMO TITLE CARD ─── */}
+        <Slide active={current === 6}>
+          <div className="flex flex-col items-center text-center gap-8">
+            <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase">Live Demo</p>
+            <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight">
+              Same Prompt. Same App.<br />
+              <span className="text-sb-muted">Different Context.</span>
+            </h2>
+
+            {/* Two agent cards */}
+            <div className="stagger flex items-stretch gap-6 mt-4">
+              {/* Claudia */}
+              <div className="card-hover rounded-2xl border border-red-400/30 bg-red-400/5 p-8 w-72 relative overflow-hidden">
+                <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-red-400" />
+                <div className="flex items-center gap-3 mb-4 pl-3">
                   <span className="w-3 h-3 rounded-full bg-red-400" />
-                  <span className="font-bold text-sm">Claudia</span>
-                  <span className="pill bg-red-400/10 text-red-400 border border-red-400/20 text-xs">no skill</span>
+                  <span className="font-bold text-lg">Claudia</span>
                 </div>
-                {/* Terminal area */}
-                <div className={`flex-1 flex flex-col ${dark ? "bg-[#0d0d0d]" : "bg-gray-50"}`}>
-                  <div className="flex-1 p-6 font-mono text-xs">
-                    <div className={dark ? "text-white/30" : "text-black/30"}>
-                      <div className="mb-1">$ claude &quot;Create a SQL view called department_stats...&quot;</div>
-                      <div className="mt-4 flex items-center gap-2">
-                        <span className="cursor-blink">_</span>
-                        <span>waiting for agent output...</span>
-                      </div>
-                    </div>
-                  </div>
-                  {/* App preview area */}
-                  <div className={`border-t ${dark ? "border-white/10 bg-[#1a1a1a]" : "border-black/10 bg-white"} p-6 flex items-center justify-center`}>
-                    <p className={`text-sm ${dark ? "text-white/40" : "text-black/40"}`}>
-                      Open <code className="font-mono bg-sb-surface px-1.5 py-0.5 rounded text-xs">localhost:3000/reports</code> to see Claudia&apos;s results
-                    </p>
-                  </div>
-                </div>
+                <span className="pill bg-red-400/10 text-red-400 border border-red-400/20 ml-3">No Skill</span>
+                <p className="text-sm text-sb-muted mt-4 pl-3">Raw agent. No security guidance.</p>
               </div>
 
-              {/* Divider */}
-              <div className={`w-px ${dark ? "bg-white/10" : "bg-black/10"}`} />
+              {/* VS */}
+              <div className="flex items-center">
+                <span className="text-2xl font-extrabold text-sb-muted/40 font-[var(--font-display)]">vs</span>
+              </div>
 
-              {/* RIGHT HALF — Jessica */}
-              <div className="flex-1 flex flex-col">
-                {/* Header */}
-                <div className="flex items-center gap-3 px-6 py-3 bg-sb-green/10 border-b border-sb-green/20">
+              {/* Jessica */}
+              <div className="card-hover rounded-2xl border border-sb-green/30 bg-sb-green/5 p-8 w-72 relative overflow-hidden">
+                <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
+                <div className="flex items-center gap-3 mb-4 pl-3">
                   <span className="w-3 h-3 rounded-full bg-sb-green" />
-                  <span className="font-bold text-sm">Jessica</span>
-                  <span className="pill bg-sb-green/10 text-sb-green border border-sb-green/20 text-xs">skill v1</span>
+                  <span className="font-bold text-lg">Jessica</span>
                 </div>
-                {/* Terminal area */}
-                <div className={`flex-1 flex flex-col ${dark ? "bg-[#0d0d0d]" : "bg-gray-50"}`}>
-                  <div className="flex-1 p-6 font-mono text-xs">
-                    <div className={dark ? "text-white/30" : "text-black/30"}>
-                      <div className="mb-1">$ claude &quot;Create a SQL view called department_stats...&quot;</div>
-                      <div className="mt-4 flex items-center gap-2">
-                        <span className="cursor-blink">_</span>
-                        <span>waiting for agent output...</span>
-                      </div>
-                    </div>
-                  </div>
-                  {/* App preview area */}
-                  <div className={`border-t ${dark ? "border-white/10 bg-[#1a1a1a]" : "border-black/10 bg-white"} p-6 flex items-center justify-center`}>
-                    <p className={`text-sm ${dark ? "text-white/40" : "text-black/40"}`}>
-                      Open <code className="font-mono bg-sb-surface px-1.5 py-0.5 rounded text-xs">localhost:3000/reports</code> to see Jessica&apos;s results
-                    </p>
-                  </div>
-                </div>
+                <span className="pill bg-sb-green/10 text-sb-green border border-sb-green/20 ml-3">Skill v1</span>
+                <p className="text-sm text-sb-muted mt-4 pl-3">Has our security skill loaded.</p>
               </div>
             </div>
 
-            {/* Footer */}
-            <div className={`flex items-center justify-center px-6 py-3 border-t ${dark ? "border-white/10" : "border-black/10"}`}>
-              <p className="text-sm text-sb-muted">Same prompt. Same app. Different context.</p>
+            {/* The prompt */}
+            <div className="stagger max-w-2xl rounded-xl border border-sb-border bg-sb-surface/60 p-6 backdrop-blur-sm mt-2">
+              <p className="text-xs text-sb-muted uppercase tracking-wider mb-2">The Prompt</p>
+              <p className="text-sm leading-relaxed italic">
+                &ldquo;Create a SQL view called department_stats that shows each department&apos;s headcount,
+                average performance rating, and salary range so HR can see workforce distribution at a glance.&rdquo;
+              </p>
             </div>
+
+            {/* Navigation hint */}
+            <p className="stagger text-sm text-sb-green/60 flex items-center gap-2 mt-2">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+              Switching to terminals + app for live demo
+            </p>
           </div>
         </Slide>
 
