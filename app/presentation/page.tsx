@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
+import { QRCodeSVG } from "qrcode.react";
 
 /* ─── Supabase logo SVG ─── */
 function SupabaseLogo({ className = "w-8 h-8" }: { className?: string }) {
@@ -525,8 +526,14 @@ export default function Presentation() {
               </span>
             </div>
             <div className="stagger flex flex-col items-center gap-2 mt-6">
-              <div className="w-24 h-24 rounded-xl border-2 border-dashed border-sb-border flex items-center justify-center">
-                <span className="text-xs text-sb-muted font-mono">QR</span>
+              <div className="rounded-xl bg-white p-2">
+                <QRCodeSVG
+                  value="https://github.com/Rodriguespn/improve-skills-workshop-aie-europe"
+                  size={96}
+                  bgColor="#ffffff"
+                  fgColor="#090909"
+                  level="M"
+                />
               </div>
               <p className="text-xs text-sb-muted">Scan to get the repo</p>
             </div>
