@@ -182,7 +182,7 @@ const TOTAL_SLIDES = 7;
 
 export default function Presentation() {
   const [current, setCurrent] = useState(0);
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
   const touchRef = useRef<{ x: number; y: number } | null>(null);
 
   const go = useCallback(
@@ -228,7 +228,7 @@ export default function Presentation() {
   }, [go]);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("pres-light", !dark);
+    document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
   const handleClick = useCallback(
