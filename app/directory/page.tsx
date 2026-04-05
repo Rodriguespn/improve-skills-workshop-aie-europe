@@ -7,6 +7,43 @@ import { getSupabase, setUserContext } from "@/lib/supabase";
 import { useCurrentUser } from "@/lib/use-current-user";
 import { AppUser, Profile } from "@/lib/types";
 
+function LoadingSkeleton() {
+  return (
+    <main className="max-w-6xl mx-auto px-6 py-8 w-full">
+      {/* Title skeleton */}
+      <div className="mb-10">
+        <div className="h-8 w-52 rounded bg-sb-surface animate-pulse" />
+        <div className="h-4 w-64 rounded bg-sb-surface animate-pulse mt-3" />
+      </div>
+
+      <div className="space-y-12">
+        {[1, 2].map((section) => (
+          <div key={section}>
+            <div className="h-4 w-36 rounded bg-sb-surface animate-pulse mb-4" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {[1, 2, 3].map((card) => (
+                <div key={card} className="rounded-xl border border-sb-border/70 bg-sb-card p-4 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-sb-surface animate-pulse" />
+                    <div className="flex-1 space-y-2">
+                      <div className="h-4 w-28 rounded bg-sb-surface animate-pulse" />
+                      <div className="h-3 w-40 rounded bg-sb-surface animate-pulse" />
+                    </div>
+                  </div>
+                  <div className="space-y-2 pt-3 border-t border-sb-border/50">
+                    <div className="h-3 w-32 rounded bg-sb-surface animate-pulse" />
+                    <div className="h-3 w-28 rounded bg-sb-surface animate-pulse" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}
+
 export default function DirectoryPage() {
   const { currentUser, switchUser } = useCurrentUser();
   const [profiles, setProfiles] = useState<Profile[]>([]);
@@ -55,8 +92,8 @@ export default function DirectoryPage() {
     return (
       <>
         <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-        <div className="flex flex-1 items-center justify-center" role="status" aria-live="polite">
-          <p className="text-sb-muted">Loading...</p>
+        <div role="status" aria-live="polite">
+          <LoadingSkeleton />
         </div>
       </>
     );
@@ -74,14 +111,19 @@ export default function DirectoryPage() {
           </p>
         </div>
 
-        <div className="stagger space-y-10">
+        <div className="stagger space-y-12">
           {departments.map((dept) => {
             const deptProfiles = grouped[dept];
             return (
               <section key={dept}>
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-sb-muted mb-3">
-                  {dept} ({deptProfiles.length})
-                </h2>
+                <div className="flex items-center gap-2.5 mb-4">
+                  <h2 className="text-sm font-semibold uppercase tracking-wider text-sb-muted">
+                    {dept}
+                  </h2>
+                  <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-sb-surface text-sb-muted">
+                    {deptProfiles.length}
+                  </span>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {deptProfiles.map((profile) => {
                     // Managers only see salary for their own department; HR sees all

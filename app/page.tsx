@@ -8,6 +8,55 @@ import { getSupabase, setUserContext } from "@/lib/supabase";
 import { useCurrentUser } from "@/lib/use-current-user";
 import { AppUser, Profile, PerformanceReview } from "@/lib/types";
 
+function LoadingSkeleton() {
+  return (
+    <main className="max-w-6xl mx-auto px-6 py-8 w-full">
+      {/* Welcome heading skeleton */}
+      <div className="mb-10">
+        <div className="h-8 w-64 rounded bg-sb-surface animate-pulse" />
+        <div className="h-4 w-40 rounded bg-sb-surface animate-pulse mt-3" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8">
+        {/* Profile skeleton */}
+        <div>
+          <div className="h-4 w-24 rounded bg-sb-surface animate-pulse mb-3" />
+          <div className="rounded-xl border border-sb-border/70 bg-sb-card p-4 space-y-4">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-full bg-sb-surface animate-pulse" />
+              <div className="flex-1 space-y-2">
+                <div className="h-4 w-32 rounded bg-sb-surface animate-pulse" />
+                <div className="h-3 w-48 rounded bg-sb-surface animate-pulse" />
+              </div>
+            </div>
+            <div className="space-y-2 pt-3 border-t border-sb-border/50">
+              <div className="h-3 w-40 rounded bg-sb-surface animate-pulse" />
+              <div className="h-3 w-36 rounded bg-sb-surface animate-pulse" />
+            </div>
+          </div>
+        </div>
+
+        {/* Reviews skeleton */}
+        <div>
+          <div className="h-4 w-28 rounded bg-sb-surface animate-pulse mb-3" />
+          <div className="space-y-3">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="rounded-xl border border-sb-border/70 bg-sb-card p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-24 rounded bg-sb-surface animate-pulse" />
+                  <div className="h-4 w-16 rounded bg-sb-surface animate-pulse" />
+                </div>
+                <div className="h-3 w-full rounded bg-sb-surface animate-pulse" />
+                <div className="h-3 w-3/4 rounded bg-sb-surface animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
 export default function DashboardPage() {
   const { currentUser, switchUser } = useCurrentUser();
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -56,8 +105,8 @@ export default function DashboardPage() {
     return (
       <>
         <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-        <div className="flex flex-1 items-center justify-center" role="status" aria-live="polite">
-          <p className="text-sb-muted">Loading...</p>
+        <div role="status" aria-live="polite">
+          <LoadingSkeleton />
         </div>
       </>
     );
@@ -77,16 +126,14 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className="stagger space-y-8">
+        <div className="stagger grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8">
           {/* Your Profile section */}
           <section>
             <h2 className="text-sm font-semibold uppercase tracking-wider text-sb-muted mb-3">
               Your Profile
             </h2>
             {profile ? (
-              <div className="max-w-sm">
-                <ProfileCard profile={profile} showSalary={canSeeSalary} />
-              </div>
+              <ProfileCard profile={profile} showSalary={canSeeSalary} />
             ) : (
               <p className="text-sb-muted text-sm">No profile found.</p>
             )}

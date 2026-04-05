@@ -19,6 +19,34 @@ function formatRating(value: number): string {
   return value.toFixed(2);
 }
 
+function LoadingSkeleton() {
+  return (
+    <main className="max-w-6xl mx-auto px-6 py-8 w-full">
+      {/* Title skeleton */}
+      <div className="mb-10">
+        <div className="h-8 w-60 rounded bg-sb-surface animate-pulse" />
+        <div className="h-4 w-56 rounded bg-sb-surface animate-pulse mt-3" />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="rounded-xl border border-sb-border/70 bg-sb-card p-5 space-y-4">
+            <div className="h-5 w-32 rounded bg-sb-surface animate-pulse" />
+            <div className="grid grid-cols-2 gap-3">
+              {[1, 2, 3, 4].map((j) => (
+                <div key={j} className="rounded-lg bg-sb-surface/50 p-3 space-y-2">
+                  <div className="h-3 w-16 rounded bg-sb-surface animate-pulse" />
+                  <div className="h-5 w-20 rounded bg-sb-surface animate-pulse" />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}
+
 export default function ReportsPage() {
   const { currentUser, switchUser } = useCurrentUser();
   const [stats, setStats] = useState<DepartmentStats[]>([]);
@@ -79,8 +107,8 @@ export default function ReportsPage() {
     return (
       <>
         <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-        <div className="flex flex-1 items-center justify-center" role="status" aria-live="polite">
-          <p className="text-sb-muted">Loading...</p>
+        <div role="status" aria-live="polite">
+          <LoadingSkeleton />
         </div>
       </>
     );

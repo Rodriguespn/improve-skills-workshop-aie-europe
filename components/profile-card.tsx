@@ -1,17 +1,12 @@
 "use client";
 
 import { Profile } from "@/lib/types";
+import { roleBadgeClass } from "@/lib/styles";
 
 interface ProfileCardProps {
   profile: Profile;
   showSalary: boolean;
 }
-
-const roleBadgeClass: Record<Profile["role"], string> = {
-  employee: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
-  manager: "bg-sb-green/20 text-sb-green border border-sb-green/30",
-  hr: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
-};
 
 function getInitials(name: string): string {
   return name
@@ -40,10 +35,10 @@ function formatSalary(amount: number): string {
 
 export function ProfileCard({ profile, showSalary }: ProfileCardProps) {
   return (
-    <div className="group rounded-xl border border-sb-border bg-sb-card p-4 transition-all duration-200 hover:border-sb-green/30 hover:shadow-[0_0_16px_rgba(62,207,142,0.08)]">
+    <div className="card-glow group rounded-xl border border-sb-border/70 bg-sb-card p-4 transition-all duration-300 hover:border-sb-green/20 hover:-translate-y-0.5">
       <div className="flex items-start gap-3">
         {/* Avatar */}
-        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sb-green/20 border border-sb-green/30 flex items-center justify-center">
+        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-sb-green/25 to-sb-green/10 border border-sb-green/20 flex items-center justify-center">
           <span className="text-sm font-semibold text-sb-green">
             {getInitials(profile.full_name)}
           </span>
@@ -52,7 +47,7 @@ export function ProfileCard({ profile, showSalary }: ProfileCardProps) {
         {/* Name + role */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-semibold text-foreground truncate">
+            <h3 className="text-sm font-semibold text-foreground tracking-tight truncate">
               {profile.full_name}
             </h3>
             <span
@@ -66,7 +61,7 @@ export function ProfileCard({ profile, showSalary }: ProfileCardProps) {
       </div>
 
       {/* Details */}
-      <div className="mt-3 space-y-1.5">
+      <div className="mt-3 pt-3 border-t border-sb-border/50 space-y-1.5">
         <DetailRow
           icon={
             <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

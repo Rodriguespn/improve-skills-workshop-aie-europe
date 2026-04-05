@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { DM_Sans, Sora, Geist_Mono } from "next/font/google";
+import { Inter, Inter_Tight, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
 });
 
-const sora = Sora({
+const interTight = Inter_Tight({
   variable: "--font-display",
   subsets: ["latin"],
 });
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${sora.variable} ${geistMono.variable} dark`}>
+    <html lang="en" className={`${inter.variable} ${interTight.variable} ${geistMono.variable} dark`}>
       <body className="min-h-screen flex flex-col antialiased">
         <a
           href="#main-content"
