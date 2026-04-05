@@ -17,6 +17,21 @@ insert into public.profiles (id, full_name, email, department, role, salary, hir
 insert into public.profiles (id, full_name, email, department, role, salary, hire_date) values
   ('d0000000-0000-0000-0000-000000000000', 'Julia Adeyemi',  'julia@company.com',    'HR',          'hr',       120000, '2019-08-01');
 
+-- Salary bands (compensation ranges by level per department)
+insert into public.salary_bands (department, level, min_salary, max_salary, equity_range) values
+  ('Engineering', 'junior',    75000,  95000,  '0.01% - 0.02%'),
+  ('Engineering', 'mid',       90000, 120000,  '0.02% - 0.05%'),
+  ('Engineering', 'senior',   115000, 155000,  '0.05% - 0.10%'),
+  ('Engineering', 'staff',    150000, 200000,  '0.10% - 0.20%'),
+  ('Engineering', 'principal', 190000, 260000,  '0.20% - 0.40%'),
+  ('Product',     'junior',    70000,  90000,  '0.01% - 0.02%'),
+  ('Product',     'mid',       85000, 115000,  '0.02% - 0.05%'),
+  ('Product',     'senior',   110000, 150000,  '0.05% - 0.10%'),
+  ('Product',     'staff',    145000, 195000,  '0.10% - 0.20%'),
+  ('HR',          'junior',    65000,  85000,  '0.01% - 0.02%'),
+  ('HR',          'mid',       80000, 110000,  '0.02% - 0.04%'),
+  ('HR',          'senior',   105000, 140000,  '0.04% - 0.08%');
+
 -- Performance reviews
 insert into public.performance_reviews (reviewee_id, reviewer_id, rating, comments, private_notes, review_period) values
   ('a1111111-1111-1111-1111-111111111111', 'b2222222-2222-2222-2222-222222222222', 4, 'Alice consistently delivers high-quality work. Strong debugging skills.', 'Consider for senior promotion in Q3. Salary bump to 110k recommended.', '2025-H2'),
