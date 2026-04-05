@@ -178,7 +178,7 @@ function TerminalBlock({ lines, title, dark }: { lines: string[]; title: string;
 }
 
 /* ─── Main Presentation ─── */
-const TOTAL_SLIDES = 13;
+const TOTAL_SLIDES = 8;
 
 export default function Presentation() {
   const [current, setCurrent] = useState(0);
@@ -282,510 +282,330 @@ export default function Presentation() {
               <SupabaseLogo className="w-14 h-14 mx-auto" />
             </div>
             <h1 className="stagger text-6xl font-extrabold font-[var(--font-display)] tracking-tight leading-tight max-w-4xl">
-              Skill Issue
+              Level Up Your Skills
             </h1>
             <p className="stagger text-xl text-sb-muted max-w-2xl leading-relaxed">
-              How We Used AI to Make Agents Actually Good at Supabase
+              Writing and testing agent skills, hands-on
             </p>
             <div className="stagger flex items-center gap-3 mt-4">
               <div className="pill bg-sb-green/10 text-sb-green border border-sb-green/20">Workshop</div>
-              <div className="pill bg-sb-surface text-sb-muted border border-sb-border">MCP Dev Summit 2026</div>
+              <div className="pill bg-sb-surface text-sb-muted border border-sb-border">AI Engineer Europe 2026</div>
             </div>
             <p className="stagger text-sm text-sb-muted mt-2">Pedro Rodrigues &middot; Supabase</p>
+            <div className="stagger flex flex-col items-center gap-2 mt-4">
+              <div className="w-24 h-24 rounded-xl border-2 border-dashed border-sb-border flex items-center justify-center">
+                <span className="text-xs text-sb-muted font-mono">QR</span>
+              </div>
+              <p className="text-xs text-sb-muted">Scan to get started</p>
+            </div>
           </div>
         </Slide>
 
-        {/* ─── Slide 1: The App ─── */}
-        <Slide active={current === 1} className="slide-from-left">
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">The App</p>
+        {/* ─── Slide 1: What Are Skills ─── */}
+        <Slide active={current === 1}>
           <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-2">
-            Employee Directory
+            What Are Skills
           </h2>
-          <p className="stagger text-lg text-sb-muted mb-8">Sensitive data. Real consequences.</p>
-          <div className="stagger grid grid-cols-3 gap-6">
-            <Card className="card-hover relative overflow-hidden">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
-              <div className="pl-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <IconTable className="w-5 h-5 text-sb-green" />
-                  <h3 className="font-bold text-lg font-mono">profiles</h3>
+          <p className="stagger text-lg text-sb-muted mb-8">
+            Reusable instructions that shape how AI agents approach tasks
+          </p>
+          <div className="stagger grid grid-cols-3 gap-6 mb-8">
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={1} />
+                <div>
+                  <h3 className="font-bold mb-1">Frontmatter</h3>
+                  <p className="text-sm text-sb-muted">Name, description, triggers for discovery</p>
                 </div>
-                <ul className="space-y-1.5 text-sm text-sb-muted">
-                  <li>name, email, department, role</li>
-                  <li className="text-red-400 font-medium">salary (SENSITIVE)</li>
-                  <li>hire_date</li>
-                </ul>
               </div>
             </Card>
-            <Card className="card-hover relative overflow-hidden">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
-              <div className="pl-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <IconTable className="w-5 h-5 text-sb-green" />
-                  <h3 className="font-bold text-lg font-mono">performance_reviews</h3>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={2} />
+                <div>
+                  <h3 className="font-bold mb-1">Instructions</h3>
+                  <p className="text-sm text-sb-muted">Markdown body with domain expertise and best practices</p>
                 </div>
-                <ul className="space-y-1.5 text-sm text-sb-muted">
-                  <li>rating, comments</li>
-                  <li className="text-red-400 font-medium">private_notes (SENSITIVE)</li>
-                </ul>
               </div>
             </Card>
-            <Card className="card-hover relative overflow-hidden">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
-              <div className="pl-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <IconShield className="w-5 h-5 text-sb-green" />
-                  <h3 className="font-bold text-lg">RLS Policies</h3>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={3} />
+                <div>
+                  <h3 className="font-bold mb-1">Context</h3>
+                  <p className="text-sm text-sb-muted">Reference docs and examples agents can consult</p>
                 </div>
-                <ul className="space-y-1.5 text-sm text-sb-muted">
-                  <li>Employees see own profile</li>
-                  <li>Managers see team salary</li>
-                  <li>HR sees everything</li>
-                </ul>
               </div>
             </Card>
           </div>
-          <div className="stagger mt-6 flex items-center gap-2 text-sm text-sb-muted">
-            <svg className="w-4 h-4 text-sb-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Open the app at <code className="font-mono bg-sb-surface px-2 py-0.5 rounded text-xs">localhost:3000</code> to explore
-          </div>
-        </Slide>
-
-        {/* ─── Slide 2: What Are Skills? ─── */}
-        <Slide active={current === 2}>
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">Quick Recap</p>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-8">
-            What Are Agent Skills?
-          </h2>
-          <div className="stagger grid grid-cols-2 gap-8">
-            <div className={`rounded-xl border border-sb-border overflow-hidden ${dark ? "bg-[#1a1a1a]" : "bg-white"}`}>
-              <div className={`flex items-center gap-2 px-4 py-2 border-b ${dark ? "border-white/10" : "border-black/10"}`}>
-                <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-                <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
-                <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-                <span className={`ml-3 text-xs font-mono ${dark ? "text-white/40" : "text-black/40"}`}>SKILL.md</span>
-              </div>
-              <div className="p-5 font-mono text-xs leading-relaxed">
-                <div className="text-sb-muted">---</div>
-                <div><span className="text-sb-green">name</span><span className="text-sb-muted">:</span> <span className={dark ? "text-white" : "text-[#1a1a1a]"}>supabase-security</span></div>
-                <div><span className="text-sb-green">description</span><span className="text-sb-muted">:</span> <span className={dark ? "text-white" : "text-[#1a1a1a]"}>Security best practices for Supabase</span></div>
-                <div className="text-sb-muted">---</div>
-                <div className={`mt-3 ${dark ? "text-white" : "text-[#1a1a1a]"}`}># Supabase Security</div>
-                <div className={`mt-1 ${dark ? "text-white/60" : "text-black/60"}`}>## Row Level Security</div>
-                <div className={dark ? "text-white/60" : "text-black/60"}>- Always enable RLS on new tables</div>
-                <div className={dark ? "text-white/60" : "text-black/60"}>- Create SELECT policies scoped to auth.uid()</div>
-                <div className={dark ? "text-white/60" : "text-black/60"}>- Sensitive columns need restrictive policies</div>
-              </div>
-            </div>
-            <div className="flex flex-col gap-5">
-              <Card>
-                <div className="flex items-start gap-3">
-                  <NumberBadge n={1} />
-                  <div>
-                    <h3 className="font-bold mb-1">Frontmatter</h3>
-                    <p className="text-sm text-sb-muted">Name + description = trigger. The agent reads this to decide when to load the skill.</p>
-                  </div>
-                </div>
-              </Card>
-              <Card>
-                <div className="flex items-start gap-3">
-                  <NumberBadge n={2} />
-                  <div>
-                    <h3 className="font-bold mb-1">Instructions</h3>
-                    <p className="text-sm text-sb-muted">Domain-specific rules, patterns, and guardrails the agent follows when the skill is active.</p>
-                  </div>
-                </div>
-              </Card>
-              <Card>
-                <div className="flex items-start gap-3">
-                  <NumberBadge n={3} />
-                  <div>
-                    <h3 className="font-bold mb-1">On-Demand Context</h3>
-                    <p className="text-sm text-sb-muted">Loaded only when relevant — not stuffed into every prompt. Keeps the context window focused.</p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </Slide>
-
-        {/* ─── Slide 3: Writing the Skill (Live Coding) ─── */}
-        <Slide active={current === 3} className="slide-from-left">
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">Block 1</p>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-8">
-            Write a Skill by Hand
-          </h2>
           <div className="stagger">
             <TerminalBlock
               dark={dark}
               title="terminal"
               lines={[
-                "$ mkdir -p .claude/skills/supabase-security",
-                "$ cat > .claude/skills/supabase-security/SKILL.md << 'EOF'",
+                "$ cat .claude/skills/supabase-security/SKILL.md",
                 "---",
                 "name: supabase-security",
-                "description: Security best practices for Supabase",
+                "description: Review Supabase RLS policies",
+                "user-invocable: true",
                 "---",
-                "# Supabase Security",
-                "## Row Level Security",
-                "- Always enable RLS on new tables",
-                "- Create SELECT policies scoped to auth.uid()",
-                "- Sensitive columns need restrictive policies",
-                "EOF",
+                "# Supabase Security Review",
+                "Check all tables have RLS enabled...",
               ]}
             />
           </div>
-          <div className="stagger mt-6 flex items-center justify-between">
-            <p className="text-sm text-sb-muted">v1 — Basic RLS rules. No mention of views.</p>
-            <BranchBadge branch="step/1-first-skill" />
-          </div>
         </Slide>
 
-        {/* ─── Slide 4: Manual Test (Live Coding) ─── */}
-        <Slide active={current === 4} className="slide-from-right">
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">Block 2</p>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-8">
-            Test It Manually
+        {/* ─── Slide 2: Testing Skills with Evals ─── */}
+        <Slide active={current === 2}>
+          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-2">
+            Testing Skills with Evals
           </h2>
-          <div className="stagger">
-            <TerminalBlock
-              dark={dark}
-              title="terminal"
-              lines={[
-                '$ claude "Add a new expense_reports table with proper security"',
-                "",
-                "# Agent reads the skill...",
-                "# Creates table with RLS ✓",
-                "# Adds SELECT policy scoped to auth.uid() ✓",
-                "# Protects sensitive columns ✓",
-              ]}
-            />
-          </div>
-          <div className="stagger mt-6 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sb-green">
-              <IconCheck className="w-5 h-5" />
-              <span className="text-sm font-medium">The skill works. Are we done?</span>
-            </div>
-            <BranchBadge branch="step/2-manual-test" />
-          </div>
-        </Slide>
-
-        {/* ─── Slide 5: The Setup ─── */}
-        <Slide active={current === 5}>
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">The Challenge</p>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-8">
-            The Skill Passed Every Test. Is It Done?
-          </h2>
-          <div className="stagger text-center mb-8">
-            <p className="text-lg text-sb-muted mb-6">Let&apos;s add a reporting feature.</p>
-            <div className={`max-w-3xl mx-auto rounded-xl border-l-4 border-sb-green p-6 text-left ${dark ? "bg-sb-surface/80" : "bg-sb-surface"}`}>
-              <p className="text-sm text-sb-muted mb-2 uppercase tracking-widest font-medium">The Prompt</p>
-              <p className={`text-base leading-relaxed italic ${dark ? "text-white/90" : "text-black/90"}`}>
-                &ldquo;Create a SQL view called <code className="font-mono bg-sb-surface px-1.5 py-0.5 rounded text-sb-green not-italic">department_stats</code> that shows each department&apos;s headcount, average performance rating, and salary range so HR can see workforce distribution at a glance.&rdquo;
-              </p>
-            </div>
-          </div>
-          <div className="stagger grid grid-cols-2 gap-6">
-            <div className="card-hover rounded-xl border border-red-400/30 p-5 bg-red-400/5 relative overflow-hidden">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-red-400" />
-              <div className="pl-4 flex items-center gap-3">
-                <span className="w-3 h-3 rounded-full bg-red-400" />
-                <h3 className="font-bold text-lg">Claudia</h3>
-                <span className="pill bg-red-400/10 text-red-400 border border-red-400/20 text-xs">No Skill</span>
-              </div>
-            </div>
-            <div className="card-hover rounded-xl border border-sb-green/30 p-5 bg-sb-green/5 relative overflow-hidden">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
-              <div className="pl-4 flex items-center gap-3">
-                <span className="w-3 h-3 rounded-full bg-sb-green" />
-                <h3 className="font-bold text-lg">Jessica</h3>
-                <span className="pill bg-sb-green/10 text-sb-green border border-sb-green/20 text-xs">Skill v1</span>
-              </div>
-            </div>
-          </div>
-        </Slide>
-
-        {/* ─── Slide 6: DEMO TITLE CARD ─── */}
-        <Slide active={current === 6}>
-          <div className="flex flex-col items-center text-center gap-8">
-            <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase">Live Demo</p>
-            <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight">
-              Same Prompt. Same App.<br />
-              <span className="text-sb-muted">Different Context.</span>
-            </h2>
-
-            {/* Two agent cards */}
-            <div className="stagger flex items-stretch gap-6 mt-4">
-              {/* Claudia */}
-              <div className="card-hover rounded-2xl border border-red-400/30 bg-red-400/5 p-8 w-72 relative overflow-hidden">
-                <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-red-400" />
-                <div className="flex items-center gap-3 mb-4 pl-3">
-                  <span className="w-3 h-3 rounded-full bg-red-400" />
-                  <span className="font-bold text-lg">Claudia</span>
-                </div>
-                <span className="pill bg-red-400/10 text-red-400 border border-red-400/20 ml-3">No Skill</span>
-                <p className="text-sm text-sb-muted mt-4 pl-3">Raw agent. No security guidance.</p>
-              </div>
-
-              {/* VS */}
-              <div className="flex items-center">
-                <span className="text-2xl font-extrabold text-sb-muted/40 font-[var(--font-display)]">vs</span>
-              </div>
-
-              {/* Jessica */}
-              <div className="card-hover rounded-2xl border border-sb-green/30 bg-sb-green/5 p-8 w-72 relative overflow-hidden">
-                <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
-                <div className="flex items-center gap-3 mb-4 pl-3">
-                  <span className="w-3 h-3 rounded-full bg-sb-green" />
-                  <span className="font-bold text-lg">Jessica</span>
-                </div>
-                <span className="pill bg-sb-green/10 text-sb-green border border-sb-green/20 ml-3">Skill v1</span>
-                <p className="text-sm text-sb-muted mt-4 pl-3">Has our security skill loaded.</p>
-              </div>
-            </div>
-
-            {/* The prompt */}
-            <div className="stagger max-w-2xl rounded-xl border border-sb-border bg-sb-surface/60 p-6 backdrop-blur-sm mt-2">
-              <p className="text-xs text-sb-muted uppercase tracking-wider mb-2">The Prompt</p>
-              <p className="text-sm leading-relaxed italic">
-                &ldquo;Create a SQL view called department_stats that shows each department&apos;s headcount,
-                average performance rating, and salary range so HR can see workforce distribution at a glance.&rdquo;
-              </p>
-            </div>
-
-            {/* Navigation hint */}
-            <p className="stagger text-sm text-sb-green/60 flex items-center gap-2 mt-2">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-              Switching to terminals + app for live demo
-            </p>
-          </div>
-        </Slide>
-
-        {/* ─── Slide 7: The Reveal ─── */}
-        <Slide active={current === 7}>
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">The Result</p>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-8 text-red-400">
-            Both Leaked Salary Data
-          </h2>
-          <div className="stagger grid grid-cols-2 gap-8">
-            <div className="card-hover rounded-2xl border border-sb-border p-7 bg-sb-card relative overflow-hidden">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-red-400" />
-              <div className="pl-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="w-3 h-3 rounded-full bg-red-400" />
-                  <h3 className="font-bold text-lg">Claudia (No Skill)</h3>
-                </div>
-                <p className="text-sm text-sb-muted leading-relaxed">
-                  Created view without <code className="font-mono bg-sb-surface px-1.5 py-0.5 rounded text-xs">security_invoker</code>. Every employee can see salary data.
-                </p>
-              </div>
-            </div>
-            <div className="card-hover rounded-2xl border border-sb-border p-7 bg-sb-card relative overflow-hidden">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-red-400" />
-              <div className="pl-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="w-3 h-3 rounded-full bg-red-400" />
-                  <h3 className="font-bold text-lg">Jessica (Skill v1)</h3>
-                </div>
-                <p className="text-sm text-sb-muted leading-relaxed">
-                  Skill covered tables, not views. Same leak.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="stagger mt-10 text-center">
-            <p className={`text-xl leading-relaxed max-w-3xl mx-auto italic ${dark ? "text-white/80" : "text-black/80"}`}>
-              &ldquo;The skill wasn&apos;t wrong — it was incomplete. And we had no way to know.&rdquo;
-            </p>
-          </div>
-          <div className="stagger mt-6 flex justify-center">
-            <BranchBadge branch="step/3-wow-moment" />
-          </div>
-        </Slide>
-
-        {/* ─── Slide 8: Iterate ─── */}
-        <Slide active={current === 8} className="slide-from-left">
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">Block 3</p>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-8">
-            Fix the Skill
-          </h2>
+          <p className="stagger text-lg text-sb-muted mb-8">The systematic approach</p>
           <div className="stagger grid grid-cols-3 gap-6">
-            <Card className="card-hover relative overflow-hidden border-yellow-400/30">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-yellow-400" />
-              <div className="pl-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <NumberBadge n={1} />
-                  <h3 className="font-bold">v1.5 — Add docs search</h3>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={1} />
+                <div>
+                  <h3 className="font-bold mb-1">Define Metrics</h3>
+                  <p className="text-sm text-sb-muted">What does &lsquo;good&rsquo; look like?</p>
                 </div>
-                <p className="text-sm text-sb-muted leading-relaxed">
-                  Search Supabase docs for security patterns. Discover what the skill is missing.
-                </p>
               </div>
             </Card>
-            <Card className="card-hover relative overflow-hidden border-sb-green/30">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
-              <div className="pl-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <NumberBadge n={2} />
-                  <h3 className="font-bold">v2 — Add explicit rule</h3>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={2} />
+                <div>
+                  <h3 className="font-bold mb-1">Create Skill</h3>
+                  <p className="text-sm text-sb-muted">SKILL.md with clear instructions</p>
                 </div>
-                <p className="text-sm text-sb-muted leading-relaxed">
-                  &ldquo;Views bypass RLS. Always use <code className="font-mono bg-sb-surface px-1 py-0.5 rounded text-xs">security_invoker = true</code>&rdquo;
-                </p>
               </div>
             </Card>
-            <Card className="card-hover relative overflow-hidden border-sb-green/30">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
-              <div className="pl-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <NumberBadge n={3} />
-                  <h3 className="font-bold">Re-run</h3>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={3} />
+                <div>
+                  <h3 className="font-bold mb-1">Test Manually</h3>
+                  <p className="text-sm text-sb-muted">Surface hidden assumptions early</p>
                 </div>
-                <p className="text-sm text-sb-muted leading-relaxed flex items-center gap-2">
-                  <IconCheck className="w-4 h-4 text-sb-green shrink-0" />
-                  Agent creates safe view
-                </p>
+              </div>
+            </Card>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={4} />
+                <div>
+                  <h3 className="font-bold mb-1">Build Test Cases</h3>
+                  <p className="text-sm text-sb-muted">Targeted prompts, positive + negative</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={5} />
+                <div>
+                  <h3 className="font-bold mb-1">Grade</h3>
+                  <p className="text-sm text-sb-muted">Deterministic checks first, then rubrics</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={6} />
+                <div>
+                  <h3 className="font-bold mb-1">Iterate</h3>
+                  <p className="text-sm text-sb-muted">Let real failures drive improvement</p>
+                </div>
               </div>
             </Card>
           </div>
-          <div className="stagger mt-8 flex items-center justify-between">
-            <p className="text-sm text-sb-muted">But how do we know this works every time?</p>
-            <BranchBadge branch="step/4-iterate" />
-          </div>
+          <p className="text-xs text-sb-muted absolute bottom-6 left-8">
+            Source: OpenAI — Testing Agent Skills Systematically with Evals
+          </p>
         </Slide>
 
-        {/* ─── Slide 9: Automate with Evals ─── */}
-        <Slide active={current === 9} className="slide-from-right">
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">Block 4</p>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-8">
-            Automate the Check
+        {/* ─── Slide 3: What We're Doing ─── */}
+        <Slide active={current === 3} className="slide-from-left">
+          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-2">
+            What We&apos;re Doing
           </h2>
-          <div className="stagger grid grid-cols-2 gap-8">
-            <TerminalBlock
-              dark={dark}
-              title="terminal — eval runner"
-              lines={[
-                "$ pnpm eval --scenario view-leak --condition skill-v1",
-                "",
-                "# Score: 0 — security_invoker missing",
-                "",
-                "$ pnpm eval --scenario view-leak --condition skill-v2",
-                "",
-                "# Score: 1 — security_invoker present",
-              ]}
-            />
-            <div className="rounded-xl border border-sb-border bg-sb-card p-6">
-              <h3 className="font-bold text-lg mb-4">Braintrust Dashboard</h3>
-              <p className="text-xs text-sb-muted uppercase tracking-widest mb-4">view-leak scenario</p>
-              <div className="space-y-3">
-                {[
-                  { name: "baseline (no skill)", score: 0, color: "bg-red-400" },
-                  { name: "skill-v1", score: 0, color: "bg-red-400" },
-                  { name: "skill-v2", score: 100, color: "bg-sb-green" },
-                ].map((v) => (
-                  <div key={v.name} className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-sb-muted w-36 shrink-0">{v.name}</span>
-                    <div className="flex-1 h-2 bg-sb-border rounded-full overflow-hidden">
-                      <div className={`h-full rounded-full score-bar ${v.color}`} style={{ width: `${Math.max(v.score, 2)}%` }} />
-                    </div>
-                    <span className={`text-sm font-mono font-bold w-12 text-right ${v.score > 0 ? "text-sb-green" : "text-red-400"}`}>{v.score}%</span>
+          <p className="stagger text-lg text-sb-muted mb-8">Same principles, our way</p>
+          <div className="stagger grid grid-cols-2 gap-10">
+            <div className="flex flex-col justify-center gap-6">
+              <p className="text-base leading-relaxed text-sb-muted">
+                We&apos;ll write a Supabase security skill from scratch, test it against a real app, discover where it fails, and iterate until it works. The same loop you&apos;d use in production — compressed into a workshop.
+              </p>
+              <BranchBadge branch="main" />
+            </div>
+            <div className="flex flex-col gap-4">
+              <Card className="card-hover relative overflow-hidden">
+                <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
+                <div className="pl-4 flex items-start gap-3">
+                  <NumberBadge n={1} />
+                  <div>
+                    <h3 className="font-bold mb-1">Write</h3>
+                    <p className="text-sm text-sb-muted">Create a Supabase security skill from scratch</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              </Card>
+              <Card className="card-hover relative overflow-hidden">
+                <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
+                <div className="pl-4 flex items-start gap-3">
+                  <NumberBadge n={2} />
+                  <div>
+                    <h3 className="font-bold mb-1">Test</h3>
+                    <p className="text-sm text-sb-muted">Run it manually against the Employee Directory</p>
+                  </div>
+                </div>
+              </Card>
+              <Card className="card-hover relative overflow-hidden">
+                <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-red-400" />
+                <div className="pl-4 flex items-start gap-3">
+                  <NumberBadge n={3} />
+                  <div>
+                    <h3 className="font-bold mb-1">Break</h3>
+                    <p className="text-sm text-sb-muted">Discover the RLS view leak</p>
+                  </div>
+                </div>
+              </Card>
+              <Card className="card-hover relative overflow-hidden">
+                <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
+                <div className="pl-4 flex items-start gap-3">
+                  <NumberBadge n={4} />
+                  <div>
+                    <h3 className="font-bold mb-1">Fix</h3>
+                    <p className="text-sm text-sb-muted">Iterate on the skill and re-test</p>
+                  </div>
+                </div>
+              </Card>
             </div>
           </div>
-          <div className="stagger mt-6 flex justify-end">
-            <BranchBadge branch="step/5-eval-setup" />
+        </Slide>
+
+        {/* ─── Slide 4: Demo ─── */}
+        <Slide active={current === 4}>
+          <div className="flex flex-col items-center justify-center text-center gap-8 h-full">
+            <h2 className="stagger text-7xl font-extrabold font-[var(--font-display)] tracking-tight">
+              Demo
+            </h2>
+            <p className="stagger text-xl text-sb-muted max-w-2xl">
+              Let&apos;s write a Supabase security skill from scratch
+            </p>
+            <div className="stagger flex items-center gap-8 mt-4 text-lg">
+              <span>&#9999;&#65039; Write</span>
+              <span className="text-sb-muted">&middot;</span>
+              <span>&#129514; Test</span>
+              <span className="text-sb-muted">&middot;</span>
+              <span>&#128165; Break</span>
+              <span className="text-sb-muted">&middot;</span>
+              <span>&#128295; Fix</span>
+            </div>
           </div>
         </Slide>
 
-        {/* ─── Slide 10: Lessons Learned ─── */}
-        <Slide active={current === 10}>
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">Lessons Learned</p>
+        {/* ─── Slide 5: Braintrust ─── */}
+        <Slide active={current === 5} className="slide-from-right">
+          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-2">
+            Braintrust
+          </h2>
+          <p className="stagger text-lg text-sb-muted mb-8">From manual checks to automated evals</p>
+          <div className="stagger grid grid-cols-2 gap-6 mb-8">
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={1} />
+                <div>
+                  <h3 className="font-bold mb-1">Track Runs</h3>
+                  <p className="text-sm text-sb-muted">Monitor agent execution in production</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={2} />
+                <div>
+                  <h3 className="font-bold mb-1">Score Criteria</h3>
+                  <p className="text-sm text-sb-muted">Grade each run against success metrics</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={3} />
+                <div>
+                  <h3 className="font-bold mb-1">Compare Versions</h3>
+                  <p className="text-sm text-sb-muted">Side-by-side skill iteration results</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="card-hover">
+              <div className="flex items-start gap-3">
+                <NumberBadge n={4} />
+                <div>
+                  <h3 className="font-bold mb-1">Catch Regressions</h3>
+                  <p className="text-sm text-sb-muted">Spot problems before they reach users</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+          <div className="stagger rounded-xl border border-sb-border bg-sb-card p-6">
+            <p className="text-xs text-sb-muted uppercase tracking-widest mb-4">Skill iteration scores</p>
+            <div className="space-y-3">
+              {[
+                { name: "v1 — basic rules", score: 60, color: "bg-red-400" },
+                { name: "v2 — view coverage", score: 85, color: "bg-yellow-400" },
+                { name: "v3 — full security", score: 95, color: "bg-sb-green" },
+              ].map((v) => (
+                <div key={v.name} className="flex items-center gap-3">
+                  <span className="text-xs font-mono text-sb-muted w-40 shrink-0">{v.name}</span>
+                  <div className="flex-1 h-2 bg-sb-border rounded-full overflow-hidden">
+                    <div className={`h-full rounded-full score-bar ${v.color}`} style={{ width: `${v.score}%` }} />
+                  </div>
+                  <span className={`text-sm font-mono font-bold w-12 text-right ${v.score >= 90 ? "text-sb-green" : v.score >= 70 ? "text-yellow-400" : "text-red-400"}`}>{v.score}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Slide>
+
+        {/* ─── Slide 6: What Actually Works ─── */}
+        <Slide active={current === 6}>
           <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-10">
             What Actually Works
           </h2>
-          <div className="stagger grid grid-cols-3 gap-10">
-            <div>
-              <div className="mb-4 text-sb-green"><IconRuler /></div>
+          <div className="stagger grid grid-cols-3 gap-10 mb-10">
+            <Card className="card-hover text-center p-8">
+              <div className="mb-4 text-sb-green flex justify-center"><IconRuler /></div>
               <h3 className="font-bold text-xl mb-2">Measure Everything</h3>
               <p className="text-sm text-sb-muted leading-relaxed">
-                If you can&apos;t measure the improvement, you don&apos;t know if there is one.
+                Good evals make regressions clear and failures explainable
               </p>
-            </div>
-            <div>
-              <div className="mb-4 text-sb-green"><IconTarget /></div>
+            </Card>
+            <Card className="card-hover text-center p-8">
+              <div className="mb-4 text-sb-green flex justify-center"><IconTarget /></div>
               <h3 className="font-bold text-xl mb-2">Principles Over Templates</h3>
               <p className="text-sm text-sb-muted leading-relaxed">
-                Teach the agent <em>why</em>, not just <em>what</em>. Let it adapt.
+                Teach the &lsquo;why&rsquo;, not just the &lsquo;how&rsquo;
               </p>
-            </div>
-            <div>
-              <div className="mb-4 text-sb-green"><IconRefresh /></div>
+            </Card>
+            <Card className="card-hover text-center p-8">
+              <div className="mb-4 text-sb-green flex justify-center"><IconRefresh /></div>
               <h3 className="font-bold text-xl mb-2">Small Iterations Win</h3>
               <p className="text-sm text-sb-muted leading-relaxed">
-                One change at a time. Know what moved the score.
+                Write, test, fix, repeat
               </p>
-            </div>
+            </Card>
           </div>
-        </Slide>
-
-        {/* ─── Slide 11: What's Next ─── */}
-        <Slide active={current === 11} className="slide-from-left">
-          <p className="stagger text-xs font-medium tracking-widest text-sb-muted uppercase mb-3">What&apos;s Next</p>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-8">
-            From Workshop to Production
-          </h2>
-          <div className="stagger grid grid-cols-2 gap-8">
-            <Card className="relative overflow-hidden">
-              <div className="accent-bar absolute top-0 left-0 w-1 h-full bg-sb-green" />
-              <div className="pl-4">
-                <h3 className="font-bold text-lg mb-3">Follow-Up Talk: April 9th</h3>
-                <p className="text-sm text-sb-muted mb-4 leading-relaxed">
-                  Deep dive into our eval results at Supabase. What actually moved the needle in production across 6 workflows.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Postgres Security", "Edge Functions", "Auth Setup", "Storage Policies", "Migrations", "Realtime"].map((tag) => (
-                    <span key={tag} className="pill bg-sb-green/10 text-sb-green border border-sb-green/20 text-xs">{tag}</span>
-                  ))}
-                </div>
+          <div className="stagger">
+            <Card className="border-sb-green/20 bg-sb-green/5">
+              <div className="flex items-center gap-3">
+                <span className="text-sb-green font-bold">Tomorrow:</span>
+                <span className="text-sm text-sb-muted">Skill Issue — What actually moved the needle in production</span>
               </div>
             </Card>
-            <div className="space-y-4">
-              <Card>
-                <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <IconCheck className="w-4 h-4 text-sb-green" /> Your Takeaways
-                </h3>
-                <ul className="space-y-2 text-sm text-sb-muted">
-                  <li>A working skill you wrote and evaluated</li>
-                  <li>Experience with the wow-moment failure</li>
-                  <li>The eval loop: write, run, inspect, iterate</li>
-                  <li>An intuition for reading eval results</li>
-                </ul>
-              </Card>
-              <Card>
-                <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <svg className="w-4 h-4 text-sb-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                  Keep Going
-                </h3>
-                <ul className="space-y-2 text-sm text-sb-muted">
-                  <li>Open source: github.com/supabase/skill-workshop</li>
-                  <li>Braintrust for tracking skill iterations</li>
-                  <li>Join #agent-skills in Supabase Discord</li>
-                </ul>
-              </Card>
-            </div>
           </div>
         </Slide>
 
-        {/* ─── Slide 12: Thank You ─── */}
-        <Slide active={current === 12}>
+        {/* ─── Slide 7: Thank You ─── */}
+        <Slide active={current === 7}>
           <Image
             src={dark ? "/slides/bg-globe.svg" : "/slides/bg-globe-light.svg"}
             alt=""
@@ -798,7 +618,7 @@ export default function Presentation() {
             <h2 className="stagger text-6xl font-extrabold font-[var(--font-display)] tracking-tight">
               Thank You
             </h2>
-            <p className="stagger text-xl text-sb-muted max-w-xl">Now go measure your skills.</p>
+            <p className="stagger text-xl text-sb-muted max-w-xl">Now go level up your skills.</p>
             <div className="stagger flex items-center gap-6 mt-6 text-sm text-sb-muted">
               <span>Pedro Rodrigues</span>
               <span className="w-1 h-1 rounded-full bg-sb-border" />
@@ -807,7 +627,7 @@ export default function Presentation() {
               <span>supabase.com</span>
             </div>
             <p className="stagger text-sm text-sb-green mt-4">
-              Follow-up talk: April 9th — What Actually Moved the Needle in Production
+              Tomorrow: Skill Issue — What actually moved the needle in production
             </p>
           </div>
         </Slide>
