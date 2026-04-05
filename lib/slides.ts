@@ -70,31 +70,20 @@ export const slides: Slide[] = [
     bullets: ["Write", "Test", "Break", "Fix"],
   },
   {
-    id: "braintrust",
-    title: "Braintrust",
-    subtitle: "From manual checks to automated evals",
-    bullets: [
-      "Track every run with structured logging",
-      "Score outputs against expected results",
-      "Compare runs side-by-side",
-      "Catch regressions before they ship",
-    ],
-  },
-  {
     id: "final-remarks",
     title: "Final Remarks",
     bullets: [
       "Measure everything — vibes don't scale",
       "Principles over templates",
       "Small iterations, fast feedback",
-      "Tomorrow's talk: taking it further",
+      "Combine Skills and MCP to Close the Context Gap — April 9, 3:10-3:30pm, St. James",
     ],
   },
   {
     id: "thank-you",
     title: "Thank You",
     subtitle: "Now go level up your skills.",
-    bullets: ["@pedrorgz", "supabase.com"],
+    bullets: ["@rodriguespn23", "pedro.rodrigues@supabase.io"],
   },
 ];
 

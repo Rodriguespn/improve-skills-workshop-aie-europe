@@ -178,7 +178,7 @@ function TerminalBlock({ lines, title, dark }: { lines: string[]; title: string;
 }
 
 /* ─── Main Presentation ─── */
-const TOTAL_SLIDES = 8;
+const TOTAL_SLIDES = 7;
 
 export default function Presentation() {
   const [current, setCurrent] = useState(0);
@@ -291,7 +291,7 @@ export default function Presentation() {
               <div className="pill bg-sb-green/10 text-sb-green border border-sb-green/20">Workshop</div>
               <div className="pill bg-sb-surface text-sb-muted border border-sb-border">AI Engineer Europe 2026</div>
             </div>
-            <p className="stagger text-sm text-sb-muted mt-2">Pedro Rodrigues &middot; Supabase</p>
+            <p className="stagger text-sm text-sb-muted mt-2">Pedro Rodrigues &middot; Supabase &middot; pedro.rodrigues@supabase.io</p>
             <div className="stagger flex flex-col items-center gap-2 mt-4">
               <div className="w-24 h-24 rounded-xl border-2 border-dashed border-sb-border flex items-center justify-center">
                 <span className="text-xs text-sb-muted font-mono">QR</span>
@@ -361,65 +361,70 @@ export default function Presentation() {
           <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-2">
             Testing Skills with Evals
           </h2>
-          <p className="stagger text-lg text-sb-muted mb-8">The systematic approach</p>
-          <div className="stagger grid grid-cols-3 gap-6">
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
+          <p className="stagger text-lg text-sb-muted mb-6">The systematic approach</p>
+
+          {/* Circular cycle diagram */}
+          <div className="stagger flex items-center justify-center">
+            <div className="relative" style={{ width: "42rem", height: "26rem" }}>
+              {/* Cycle ring — SVG arrows connecting steps */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 672 416" fill="none">
+                {/* Curved arrows forming the cycle — top row L→R */}
+                <path d="M155 108 L260 108" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                <path d="M380 108 L490 108" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                {/* Right side down */}
+                <path d="M590 160 C620 200, 620 250, 590 280" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                {/* Bottom row R→L */}
+                <path d="M490 320 L380 320" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                <path d="M260 320 L155 320" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                {/* Left side up */}
+                <path d="M75 280 C45 250, 45 200, 75 160" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                {/* Arrow marker */}
+                <defs>
+                  <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <path d="M0 0 L8 3 L0 6" fill="none" stroke="#3ECF8E" strokeWidth="1.5" />
+                  </marker>
+                </defs>
+              </svg>
+
+              {/* Step nodes positioned around the cycle */}
+              {/* Top row: 1, 2, 3 (left to right) */}
+              <div className="absolute flex flex-col items-center text-center" style={{ left: "0", top: "56px", width: "150px" }}>
                 <NumberBadge n={1} />
-                <div>
-                  <h3 className="font-bold mb-1">Define Metrics</h3>
-                  <p className="text-sm text-sb-muted">What does &lsquo;good&rsquo; look like?</p>
-                </div>
+                <h3 className="font-bold text-sm mt-2">Define Metrics</h3>
+                <p className="text-xs text-sb-muted mt-0.5">What does &lsquo;good&rsquo; look like?</p>
               </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
+              <div className="absolute flex flex-col items-center text-center" style={{ left: "260px", top: "56px", width: "150px" }}>
                 <NumberBadge n={2} />
-                <div>
-                  <h3 className="font-bold mb-1">Create Skill</h3>
-                  <p className="text-sm text-sb-muted">SKILL.md with clear instructions</p>
-                </div>
+                <h3 className="font-bold text-sm mt-2">Create Skill</h3>
+                <p className="text-xs text-sb-muted mt-0.5">SKILL.md with clear instructions</p>
               </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
+              <div className="absolute flex flex-col items-center text-center" style={{ left: "522px", top: "56px", width: "150px" }}>
                 <NumberBadge n={3} />
-                <div>
-                  <h3 className="font-bold mb-1">Test Manually</h3>
-                  <p className="text-sm text-sb-muted">Surface hidden assumptions early</p>
-                </div>
+                <h3 className="font-bold text-sm mt-2">Test</h3>
+                <p className="text-xs text-sb-muted mt-0.5">Surface hidden assumptions</p>
               </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={4} />
-                <div>
-                  <h3 className="font-bold mb-1">Build Test Cases</h3>
-                  <p className="text-sm text-sb-muted">Targeted prompts, positive + negative</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={5} />
-                <div>
-                  <h3 className="font-bold mb-1">Grade</h3>
-                  <p className="text-sm text-sb-muted">Deterministic checks first, then rubrics</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
+
+              {/* Bottom row: 6, 5, 4 (left to right, but numbered in cycle order) */}
+              <div className="absolute flex flex-col items-center text-center" style={{ left: "0", top: "268px", width: "150px" }}>
                 <NumberBadge n={6} />
-                <div>
-                  <h3 className="font-bold mb-1">Iterate</h3>
-                  <p className="text-sm text-sb-muted">Let real failures drive improvement</p>
-                </div>
+                <h3 className="font-bold text-sm mt-2">Iterate</h3>
+                <p className="text-xs text-sb-muted mt-0.5">Real failures drive improvement</p>
               </div>
-            </Card>
+              <div className="absolute flex flex-col items-center text-center" style={{ left: "260px", top: "268px", width: "150px" }}>
+                <NumberBadge n={5} />
+                <h3 className="font-bold text-sm mt-2">Grade</h3>
+                <p className="text-xs text-sb-muted mt-0.5">Deterministic checks, then rubrics</p>
+              </div>
+              <div className="absolute flex flex-col items-center text-center" style={{ left: "522px", top: "268px", width: "150px" }}>
+                <NumberBadge n={4} />
+                <h3 className="font-bold text-sm mt-2">Build Test Cases</h3>
+                <p className="text-xs text-sb-muted mt-0.5">Targeted prompts, +/&minus; scenarios</p>
+              </div>
+            </div>
           </div>
+
           <p className="text-xs text-sb-muted absolute bottom-6 left-8">
-            Source: OpenAI — Testing Agent Skills Systematically with Evals
+            Source: OpenAI &mdash; Testing Agent Skills Systematically with Evals
           </p>
         </Slide>
 
@@ -490,84 +495,46 @@ export default function Presentation() {
             <p className="stagger text-xl text-sb-muted max-w-2xl">
               Let&apos;s write a Supabase security skill from scratch
             </p>
-            <div className="stagger flex items-center gap-8 mt-4 text-lg">
-              <span>&#9999;&#65039; Write</span>
-              <span className="text-sb-muted">&middot;</span>
-              <span>&#129514; Test</span>
-              <span className="text-sb-muted">&middot;</span>
-              <span>&#128165; Break</span>
-              <span className="text-sb-muted">&middot;</span>
-              <span>&#128295; Fix</span>
+            <div className="stagger flex items-center gap-10 mt-4 text-lg">
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-sb-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z" />
+                </svg>
+                Write
+              </span>
+              <svg className="w-4 h-4 text-sb-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-sb-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                </svg>
+                Test
+              </span>
+              <svg className="w-4 h-4 text-sb-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+                Break
+              </span>
+              <svg className="w-4 h-4 text-sb-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-sb-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M4.22 4.97C2.22 6.97 1 9.85 1 12.97s1.22 6 3.22 8" />
+                </svg>
+                Fix
+              </span>
             </div>
           </div>
         </Slide>
 
-        {/* ─── Slide 5: Braintrust ─── */}
-        <Slide active={current === 5} className="slide-from-right">
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-2">
-            Braintrust
-          </h2>
-          <p className="stagger text-lg text-sb-muted mb-8">From manual checks to automated evals</p>
-          <div className="stagger grid grid-cols-2 gap-6 mb-8">
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={1} />
-                <div>
-                  <h3 className="font-bold mb-1">Track Runs</h3>
-                  <p className="text-sm text-sb-muted">Monitor agent execution in production</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={2} />
-                <div>
-                  <h3 className="font-bold mb-1">Score Criteria</h3>
-                  <p className="text-sm text-sb-muted">Grade each run against success metrics</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={3} />
-                <div>
-                  <h3 className="font-bold mb-1">Compare Versions</h3>
-                  <p className="text-sm text-sb-muted">Side-by-side skill iteration results</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={4} />
-                <div>
-                  <h3 className="font-bold mb-1">Catch Regressions</h3>
-                  <p className="text-sm text-sb-muted">Spot problems before they reach users</p>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="stagger rounded-xl border border-sb-border bg-sb-card p-6">
-            <p className="text-xs text-sb-muted uppercase tracking-widest mb-4">Skill iteration scores</p>
-            <div className="space-y-3">
-              {[
-                { name: "v1 — basic rules", score: 60, color: "bg-red-400" },
-                { name: "v2 — view coverage", score: 85, color: "bg-yellow-400" },
-                { name: "v3 — full security", score: 95, color: "bg-sb-green" },
-              ].map((v) => (
-                <div key={v.name} className="flex items-center gap-3">
-                  <span className="text-xs font-mono text-sb-muted w-40 shrink-0">{v.name}</span>
-                  <div className="flex-1 h-2 bg-sb-border rounded-full overflow-hidden">
-                    <div className={`h-full rounded-full score-bar ${v.color}`} style={{ width: `${v.score}%` }} />
-                  </div>
-                  <span className={`text-sm font-mono font-bold w-12 text-right ${v.score >= 90 ? "text-sb-green" : v.score >= 70 ? "text-yellow-400" : "text-red-400"}`}>{v.score}%</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Slide>
-
-        {/* ─── Slide 6: What Actually Works ─── */}
-        <Slide active={current === 6}>
+        {/* ─── Slide 5: What Actually Works ─── */}
+        <Slide active={current === 5}>
           <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-10">
             What Actually Works
           </h2>
@@ -596,16 +563,24 @@ export default function Presentation() {
           </div>
           <div className="stagger">
             <Card className="border-sb-green/20 bg-sb-green/5">
-              <div className="flex items-center gap-3">
-                <span className="text-sb-green font-bold">Tomorrow:</span>
-                <span className="text-sm text-sb-muted">Skill Issue — What actually moved the needle in production</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-sb-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                  </svg>
+                  <div>
+                    <p className="font-bold text-sm">Combine Skills and MCP to Close the Context Gap</p>
+                    <p className="text-xs text-sb-muted mt-0.5">April 9 &middot; 3:10&ndash;3:30pm &middot; St. James &middot; Context Engineering track</p>
+                  </div>
+                </div>
+                <div className="pill bg-sb-green/10 text-sb-green border border-sb-green/20 shrink-0">Talk</div>
               </div>
             </Card>
           </div>
         </Slide>
 
-        {/* ─── Slide 7: Thank You ─── */}
-        <Slide active={current === 7}>
+        {/* ─── Slide 6: Thank You ─── */}
+        <Slide active={current === 6}>
           <Image
             src={dark ? "/slides/bg-globe.svg" : "/slides/bg-globe-light.svg"}
             alt=""
@@ -622,13 +597,23 @@ export default function Presentation() {
             <div className="stagger flex items-center gap-6 mt-6 text-sm text-sb-muted">
               <span>Pedro Rodrigues</span>
               <span className="w-1 h-1 rounded-full bg-sb-border" />
-              <span>@pedrorgz</span>
+              <span>@rodriguespn23</span>
               <span className="w-1 h-1 rounded-full bg-sb-border" />
-              <span>supabase.com</span>
+              <span>pedro.rodrigues@supabase.io</span>
             </div>
-            <p className="stagger text-sm text-sb-green mt-4">
-              Tomorrow: Skill Issue — What actually moved the needle in production
-            </p>
+            <div className="stagger mt-6">
+              <Card className="border-sb-green/20 bg-sb-green/5 inline-block">
+                <div className="flex items-center gap-3">
+                  <svg className="w-4 h-4 text-sb-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                  </svg>
+                  <div>
+                    <p className="text-sm font-bold text-sb-green">Combine Skills and MCP to Close the Context Gap</p>
+                    <p className="text-xs text-sb-muted mt-0.5">April 9 &middot; 3:10&ndash;3:30pm &middot; St. James</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         </Slide>
 

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { DM_Sans, Sora, Geist_Mono } from "next/font/google";
+import { Inter, Inter_Tight, Geist_Mono } from "next/font/google";
 import "./presentation.css";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
 });
 
-const sora = Sora({
+const interTight = Inter_Tight({
   variable: "--font-display",
   subsets: ["latin"],
 });
@@ -31,7 +31,7 @@ export default function PresentationLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${sora.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${interTight.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="pres min-h-full flex flex-col">{children}</body>
     </html>
