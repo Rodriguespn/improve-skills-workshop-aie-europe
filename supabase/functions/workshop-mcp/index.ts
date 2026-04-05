@@ -22,18 +22,17 @@ const slides: Slide[] = [
   { id: "title", title: "Level Up Your Skills", subtitle: "Writing and testing agent skills, hands-on", bullets: ["Pedro Rodrigues — Supabase", "AI Engineer Europe 2026"] },
   { id: "what-are-skills", title: "What Are Skills?", bullets: ["Defined in a SKILL.md file alongside your code", "Discoverable by any agent that reads the repo", "Testable with evals, just like any other code"] },
   { id: "testing-with-evals", title: "Testing with Evals", bullets: ["Define the metrics that matter", "Create the skill under test", "Test it manually first", "Build structured test cases", "Grade outputs automatically", "Iterate until the scores hold"], source: { label: "OpenAI — Testing Agent Skills Systematically with Evals", url: "https://developers.openai.com/blog/eval-skills" } },
-  { id: "what-were-doing", title: "What We're Doing", bullets: ["Write a Supabase security skill", "Test it manually against a real database", "Discover an RLS view leak", "Iterate on the skill to catch it", "Automate the whole loop with Braintrust"] },
-  { id: "demo", title: "Demo", subtitle: "Let's write a Supabase security skill from scratch", bullets: ["Write", "Test", "Break", "Fix"] },
-  { id: "braintrust", title: "Braintrust", subtitle: "From manual checks to automated evals", bullets: ["Track every run with structured logging", "Score outputs against expected results", "Compare runs side-by-side", "Catch regressions before they ship"] },
-  { id: "final-remarks", title: "Final Remarks", bullets: ["Measure everything — vibes don't scale", "Principles over templates", "Small iterations, fast feedback", "Tomorrow's talk: taking it further"] },
-  { id: "thank-you", title: "Thank You", subtitle: "Now go level up your skills.", bullets: ["@pedrorgz", "supabase.com"] },
+  { id: "what-were-doing", title: "What We're Doing", bullets: ["Write a product-aware skill (using Supabase as our example)", "Test it manually against a real database", "Discover an RLS view leak", "Iterate on the skill to catch it", "Automate the whole loop with Braintrust"] },
+  { id: "demo", title: "Demo", subtitle: "From zero to a skill that knows your product", bullets: ["Write", "Test", "Break", "Fix"] },
+  { id: "final-remarks", title: "Final Remarks", bullets: ["Measure everything — vibes don't scale", "Principles over templates", "Small iterations, fast feedback", "Combine Skills and MCP to Close the Context Gap — April 9, 3:10-3:30pm, St. James"] },
+  { id: "thank-you", title: "Thank You", subtitle: "Now go level up your skills.", bullets: ["@rodriguespn23", "pedro.rodrigues@supabase.io"] },
 ];
 
 const STEP_BRANCHES = [
-  { branch: "step/1-first-skill", description: "Write the initial Supabase security skill" },
+  { branch: "step/1-first-skill", description: "Write the initial product-aware skill" },
   { branch: "step/2-manual-test", description: "Test the skill manually against a live database" },
   { branch: "step/3-break-it", description: "Discover the RLS view leak" },
-  { branch: "step/4-fix-skill", description: "Iterate on the skill to catch the leak" },
+  { branch: "step/4-fix-skill", description: "Iterate on the skill to close the gap" },
   { branch: "step/5-eval-setup", description: "Automate testing with Braintrust evals" },
 ];
 
