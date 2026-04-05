@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "workshop": {
+      "type": "url",
+      "url": "https://tabowbdrhvtlvzvfyinw.supabase.co/functions/v1/workshop-mcp"
+    }
+  }
+}
