@@ -437,7 +437,7 @@ export default function Presentation() {
           <div className="stagger grid grid-cols-2 gap-10">
             <div className="flex flex-col justify-center gap-6">
               <p className="text-base leading-relaxed text-sb-muted">
-                We&apos;ll write a Supabase security skill from scratch, test it against a real app, discover where it fails, and iterate until it works. The same loop you&apos;d use in production — compressed into a workshop.
+                We&apos;ll write a product-aware skill from scratch using Supabase as our example, test it against a real app, discover where it fails, and iterate until it works. The same loop you&apos;d use in production.
               </p>
               <BranchBadge branch="main" />
             </div>
@@ -448,7 +448,7 @@ export default function Presentation() {
                   <NumberBadge n={1} />
                   <div>
                     <h3 className="font-bold mb-1">Write</h3>
-                    <p className="text-sm text-sb-muted">Create a Supabase security skill from scratch</p>
+                    <p className="text-sm text-sb-muted">Create a product-aware skill from scratch</p>
                   </div>
                 </div>
               </Card>
@@ -493,16 +493,16 @@ export default function Presentation() {
               Demo
             </h2>
             <p className="stagger text-xl text-sb-muted max-w-2xl">
-              Let&apos;s write a Supabase security skill from scratch
+              From zero to a skill that knows your product
             </p>
-            <div className="stagger flex items-center gap-10 mt-4 text-lg">
+            <div className="stagger flex items-center gap-8 mt-4 text-lg">
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-sb-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z" />
                 </svg>
                 Write
               </span>
-              <svg className="w-4 h-4 text-sb-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="w-4 h-4 text-sb-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
               <span className="flex items-center gap-2">
@@ -511,7 +511,7 @@ export default function Presentation() {
                 </svg>
                 Test
               </span>
-              <svg className="w-4 h-4 text-sb-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="w-4 h-4 text-sb-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
               <span className="flex items-center gap-2">
@@ -520,12 +520,12 @@ export default function Presentation() {
                 </svg>
                 Break
               </span>
-              <svg className="w-4 h-4 text-sb-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="w-4 h-4 text-sb-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-sb-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M4.22 4.97C2.22 6.97 1 9.85 1 12.97s1.22 6 3.22 8" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1a7.5 7.5 0 1110.795 10.795l-5.1-5.1m0 0L15.75 21M11.42 15.17L21 5.59" />
                 </svg>
                 Fix
               </span>

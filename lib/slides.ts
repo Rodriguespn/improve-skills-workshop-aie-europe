@@ -56,7 +56,7 @@ export const slides: Slide[] = [
     id: "what-were-doing",
     title: "What We're Doing",
     bullets: [
-      "Write a Supabase security skill",
+      "Write a product-aware skill (using Supabase as our example)",
       "Test it manually against a real database",
       "Discover an RLS view leak",
       "Iterate on the skill to catch it",
@@ -66,7 +66,7 @@ export const slides: Slide[] = [
   {
     id: "demo",
     title: "Demo",
-    subtitle: "Let's write a Supabase security skill from scratch",
+    subtitle: "From zero to a skill that knows your product",
     bullets: ["Write", "Test", "Break", "Fix"],
   },
   {
