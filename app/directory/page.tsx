@@ -4,11 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import { Nav } from "@/components/nav";
 import { ProfileCard } from "@/components/profile-card";
 import { getSupabase, setUserContext } from "@/lib/supabase";
-import { USERS } from "@/lib/users";
+import { useCurrentUser } from "@/lib/use-current-user";
 import { AppUser, Profile } from "@/lib/types";
 
 export default function DirectoryPage() {
-  const [currentUser, setCurrentUser] = useState<AppUser>(USERS[0]);
+  const { currentUser, switchUser } = useCurrentUser();
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,9 +37,7 @@ export default function DirectoryPage() {
     loadData(currentUser);
   }, [currentUser, loadData]);
 
-  const handleSwitchUser = (user: AppUser) => {
-    setCurrentUser(user);
-  };
+  const handleSwitchUser = switchUser;
 
   // Group profiles by department
   const grouped = profiles.reduce<Record<string, Profile[]>>((acc, profile) => {
@@ -57,7 +55,7 @@ export default function DirectoryPage() {
     return (
       <>
         <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-        <div className="flex flex-1 items-center justify-center">
+        <div className="flex flex-1 items-center justify-center" role="status" aria-live="polite">
           <p className="text-sb-muted">Loading...</p>
         </div>
       </>
@@ -67,11 +65,11 @@ export default function DirectoryPage() {
   return (
     <>
       <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-      <main className="max-w-6xl mx-auto px-6 py-8 w-full">
+      <main id="main-content" className="max-w-6xl mx-auto px-6 py-8 w-full">
         {/* Title */}
-        <div className="mb-8 animate-in">
-          <h1 className="text-2xl font-semibold text-foreground">Team Directory</h1>
-          <p className="text-sb-muted text-sm mt-1">
+        <div className="mb-10 animate-in">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Team Directory</h1>
+          <p className="text-sb-muted text-sm mt-2">
             {profiles.length} people across {departments.length} departments
           </p>
         </div>

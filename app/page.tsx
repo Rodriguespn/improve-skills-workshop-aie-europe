@@ -5,11 +5,11 @@ import { Nav } from "@/components/nav";
 import { ProfileCard } from "@/components/profile-card";
 import { ReviewCard } from "@/components/review-card";
 import { getSupabase, setUserContext } from "@/lib/supabase";
-import { USERS } from "@/lib/users";
+import { useCurrentUser } from "@/lib/use-current-user";
 import { AppUser, Profile, PerformanceReview } from "@/lib/types";
 
 export default function DashboardPage() {
-  const [currentUser, setCurrentUser] = useState<AppUser>(USERS[0]);
+  const { currentUser, switchUser } = useCurrentUser();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [reviews, setReviews] = useState<PerformanceReview[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,9 +47,7 @@ export default function DashboardPage() {
     loadData(currentUser);
   }, [currentUser, loadData]);
 
-  const handleSwitchUser = (user: AppUser) => {
-    setCurrentUser(user);
-  };
+  const handleSwitchUser = switchUser;
 
   const firstName = currentUser.name.split(" ")[0];
   const canSeeSalary = currentUser.role === "manager" || currentUser.role === "hr";
@@ -58,7 +56,7 @@ export default function DashboardPage() {
     return (
       <>
         <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-        <div className="flex flex-1 items-center justify-center">
+        <div className="flex flex-1 items-center justify-center" role="status" aria-live="polite">
           <p className="text-sb-muted">Loading...</p>
         </div>
       </>
@@ -68,13 +66,13 @@ export default function DashboardPage() {
   return (
     <>
       <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-      <main className="max-w-6xl mx-auto px-6 py-8 w-full">
+      <main id="main-content" className="max-w-6xl mx-auto px-6 py-8 w-full">
         {/* Welcome heading */}
-        <div className="mb-8 animate-in">
-          <h1 className="text-2xl font-semibold text-foreground">
+        <div className="mb-10 animate-in">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
             Welcome back, {firstName}
           </h1>
-          <p className="text-sb-muted text-sm mt-1">
+          <p className="text-sb-muted text-sm mt-2">
             {currentUser.department} &middot; {currentUser.role}
           </p>
         </div>

@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Nav } from "@/components/nav";
 import { StatCard } from "@/components/stat-card";
 import { getSupabase, setUserContext } from "@/lib/supabase";
-import { USERS } from "@/lib/users";
+import { useCurrentUser } from "@/lib/use-current-user";
 import { AppUser, DepartmentStats } from "@/lib/types";
 
 function formatCurrency(value: number): string {
@@ -20,7 +20,7 @@ function formatRating(value: number): string {
 }
 
 export default function ReportsPage() {
-  const [currentUser, setCurrentUser] = useState<AppUser>(USERS[0]);
+  const { currentUser, switchUser } = useCurrentUser();
   const [stats, setStats] = useState<DepartmentStats[]>([]);
   const [viewExists, setViewExists] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -68,9 +68,7 @@ export default function ReportsPage() {
     loadData(currentUser);
   }, [currentUser, loadData]);
 
-  const handleSwitchUser = (user: AppUser) => {
-    setCurrentUser(user);
-  };
+  const handleSwitchUser = switchUser;
 
   const isLeaking =
     viewExists &&
@@ -81,7 +79,7 @@ export default function ReportsPage() {
     return (
       <>
         <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-        <div className="flex flex-1 items-center justify-center">
+        <div className="flex flex-1 items-center justify-center" role="status" aria-live="polite">
           <p className="text-sb-muted">Loading...</p>
         </div>
       </>
@@ -91,26 +89,26 @@ export default function ReportsPage() {
   return (
     <>
       <Nav currentUser={currentUser} onSwitchUser={handleSwitchUser} />
-      <main className="max-w-6xl mx-auto px-6 py-8 w-full">
+      <main id="main-content" className="max-w-6xl mx-auto px-6 py-8 w-full">
         {/* Title */}
-        <div className="mb-8 animate-in">
-          <h1 className="text-2xl font-semibold text-foreground">Department Reports</h1>
-          <p className="text-sb-muted text-sm mt-1">
+        <div className="mb-10 animate-in">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Department Reports</h1>
+          <p className="text-sb-muted text-sm mt-2">
             Aggregated statistics by department
           </p>
         </div>
 
         {/* Error state */}
         {error && (
-          <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-6 mb-6">
-            <p className="text-sm font-semibold text-red-400 mb-1">Query Error</p>
-            <p className="text-sm text-red-300/80">{error}</p>
+          <div className="rounded-xl border border-sb-danger/30 bg-sb-danger/5 p-6 mb-6">
+            <p className="text-sm font-semibold text-sb-danger mb-1">Query Error</p>
+            <p className="text-sm text-sb-danger-muted/80">{error}</p>
           </div>
         )}
 
         {/* Empty state — view doesn&apos;t exist yet */}
         {!viewExists && !error && (
-          <div className="rounded-xl border border-sb-border bg-sb-card p-10 flex flex-col items-center gap-4 text-center">
+          <div className="rounded-xl border border-sb-border/70 bg-sb-card p-10 flex flex-col items-center gap-4 text-center">
             <svg
               className="w-12 h-12 text-sb-muted/40"
               viewBox="0 0 24 24"
@@ -141,9 +139,9 @@ export default function ReportsPage() {
           <div className="space-y-6">
             {/* Data leak warning banner */}
             {isLeaking && (
-              <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 flex items-start gap-3">
+              <div className="rounded-xl border border-sb-danger/40 bg-sb-danger/10 p-4 flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5"
+                  className="w-5 h-5 text-sb-danger flex-shrink-0 mt-0.5"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                   aria-hidden="true"
@@ -155,11 +153,11 @@ export default function ReportsPage() {
                   />
                 </svg>
                 <div>
-                  <p className="text-sm font-semibold text-red-400">Data Leak Detected</p>
-                  <p className="text-sm text-red-300/80 mt-0.5">
+                  <p className="text-sm font-semibold text-sb-danger">Data Leak Detected</p>
+                  <p className="text-sm text-sb-danger-muted/80 mt-0.5">
                     As a <strong>{currentUser.role}</strong>, you should not have access to salary
-                    data in this view. The <code className="text-xs bg-red-500/20 px-1 py-0.5 rounded">department_stats</code> view
-                    is missing <code className="text-xs bg-red-500/20 px-1 py-0.5 rounded">security_invoker = true</code>,
+                    data in this view. The <code className="text-xs bg-sb-danger/20 px-1 py-0.5 rounded">department_stats</code> view
+                    is missing <code className="text-xs bg-sb-danger/20 px-1 py-0.5 rounded">security_invoker = true</code>,
                     which means it runs with the definer&apos;s privileges instead of the caller&apos;s,
                     bypassing row-level security.
                   </p>
@@ -171,7 +169,7 @@ export default function ReportsPage() {
               {stats.map((dept) => (
                 <div
                   key={dept.department}
-                  className="rounded-xl border border-sb-border bg-sb-card p-5 space-y-4"
+                  className="rounded-xl border border-sb-border/70 bg-sb-card p-5 space-y-4"
                 >
                   <h3 className="text-base font-semibold text-foreground">
                     {dept.department}
