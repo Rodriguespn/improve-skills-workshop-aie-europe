@@ -292,12 +292,6 @@ export default function Presentation() {
               <div className="pill bg-sb-surface text-sb-muted border border-sb-border">AI Engineer Europe 2026</div>
             </div>
             <p className="stagger text-sm text-sb-muted mt-2">Pedro Rodrigues &middot; Supabase &middot; pedro.rodrigues@supabase.io</p>
-            <div className="stagger flex flex-col items-center gap-2 mt-4">
-              <div className="w-24 h-24 rounded-xl border-2 border-dashed border-sb-border flex items-center justify-center">
-                <span className="text-xs text-sb-muted font-mono">QR</span>
-              </div>
-              <p className="text-xs text-sb-muted">Scan to get started</p>
-            </div>
           </div>
         </Slide>
 
@@ -529,6 +523,12 @@ export default function Presentation() {
                 </svg>
                 Fix
               </span>
+            </div>
+            <div className="stagger flex flex-col items-center gap-2 mt-6">
+              <div className="w-24 h-24 rounded-xl border-2 border-dashed border-sb-border flex items-center justify-center">
+                <span className="text-xs text-sb-muted font-mono">QR</span>
+              </div>
+              <p className="text-xs text-sb-muted">Scan to get the repo</p>
             </div>
           </div>
         </Slide>
