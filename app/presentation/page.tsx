@@ -368,16 +368,16 @@ export default function Presentation() {
             <div className="relative" style={{ width: "42rem", height: "26rem" }}>
               {/* Cycle ring — SVG arrows connecting steps */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 672 416" fill="none">
-                {/* Curved arrows forming the cycle — top row L→R */}
-                <path d="M155 108 L260 108" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
-                <path d="M380 108 L490 108" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
-                {/* Right side down */}
-                <path d="M590 160 C620 200, 620 250, 590 280" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                {/* Top row L→R */}
+                <path d="M150 108 L262 108" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                <path d="M408 108 L524 108" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                {/* Right side down — pushed further right to avoid overlapping step 4 */}
+                <path d="M640 155 C672 200, 672 255, 640 300" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
                 {/* Bottom row R→L */}
-                <path d="M490 320 L380 320" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
-                <path d="M260 320 L155 320" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
-                {/* Left side up */}
-                <path d="M75 280 C45 250, 45 200, 75 160" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                <path d="M524 330 L408 330" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                <path d="M262 330 L150 330" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
+                {/* Left side up — pushed further left to clear step 6 */}
+                <path d="M32 300 C0 255, 0 200, 32 155" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="text-sb-border" markerEnd="url(#arrowGreen)" />
                 {/* Arrow marker */}
                 <defs>
                   <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
@@ -423,7 +423,7 @@ export default function Presentation() {
             </div>
           </div>
 
-          <p className="text-xs text-sb-muted absolute bottom-6 left-8">
+          <p className="text-xs text-sb-muted/50 absolute bottom-12 left-20">
             Source: OpenAI &mdash; Testing Agent Skills Systematically with Evals
           </p>
         </Slide>
@@ -618,33 +618,35 @@ export default function Presentation() {
         </Slide>
 
         {/* ─── Bottom navigation bar ─── */}
-        <div className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-between px-8 py-3 bg-background/80 backdrop-blur-sm border-t border-sb-border">
-          <div className="flex items-center gap-3 text-sm text-sb-muted">
+        <div className="absolute bottom-0 left-0 right-0 z-40 flex items-center justify-between px-8 py-4">
+          <div className="flex items-center gap-3">
             <Image
               src={dark ? "/slides/supabase-dark.svg" : "/slides/supabase-light.svg"}
               alt="Supabase"
-              width={80}
+              width={100}
               height={20}
               className="opacity-60"
             />
-            <span className="font-mono text-xs">{current + 1}/{TOTAL_SLIDES}</span>
+            <span className="text-xs text-sb-muted/50 font-mono">{current + 1}/{TOTAL_SLIDES}</span>
           </div>
           <div className="flex items-center gap-1.5">
             {Array.from({ length: TOTAL_SLIDES }, (_, i) => (
               <button
                 key={i}
                 onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  i === current ? "w-6 bg-sb-green" : i < current ? "w-2 bg-sb-green/30" : "w-2 bg-sb-border"
-                }`}
+                className={`h-11 w-6 flex items-center justify-center cursor-pointer`}
                 aria-label={`Go to slide ${i + 1}`}
-              />
+              >
+                <span className={`block h-1.5 rounded-full transition-all duration-300 ${
+                  i === current ? "w-6 bg-sb-green" : i < current ? "w-2 bg-sb-green/30" : "w-2 bg-sb-border"
+                }`} />
+              </button>
             ))}
           </div>
           <div className="flex items-center gap-4">
             <button
               onClick={(e) => { e.stopPropagation(); setDark((d) => !d); }}
-              className="p-1.5 rounded-lg hover:bg-sb-surface transition-colors text-sb-muted cursor-pointer"
+              className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-sb-surface transition-colors text-sb-muted cursor-pointer"
               aria-label="Toggle dark mode"
             >
               {dark ? (
@@ -657,12 +659,12 @@ export default function Presentation() {
                 </svg>
               )}
             </button>
-            <span className="text-xs text-sb-muted/50 hidden lg:block">&larr; &rarr; navigate &middot; D toggle theme</span>
+            <span className="text-xs text-sb-muted/60 font-mono">&larr; &rarr; navigate</span>
           </div>
         </div>
 
         {/* Progress bar */}
-        <div className="fixed bottom-0 left-0 right-0 z-40 h-0.5 bg-sb-border/30">
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-sb-border/30 z-50">
           <div className="h-full bg-sb-green/50 slide-progress" style={{ width: `${((current + 1) / TOTAL_SLIDES) * 100}%` }} />
         </div>
       </div>
