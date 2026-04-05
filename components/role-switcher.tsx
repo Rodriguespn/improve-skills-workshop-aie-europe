@@ -1,39 +1,103 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { AppUser } from "@/lib/types";
 import { USERS } from "@/lib/users";
+import { roleBadgeClass } from "@/lib/styles";
 
 interface RoleSwitcherProps {
   currentUser: AppUser;
   onSwitch: (user: AppUser) => void;
 }
 
-const roleBadgeClass: Record<AppUser["role"], string> = {
-  employee: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
-  manager: "bg-sb-green/20 text-sb-green border border-sb-green/30",
-  hr: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
-};
-
 export function RoleSwitcher({ currentUser, onSwitch }: RoleSwitcherProps) {
   const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const closeMenu = useCallback(() => {
+    setOpen(false);
+    setActiveIndex(-1);
+    triggerRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
+        setActiveIndex(-1);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [open]);
+
+  // Focus active option when activeIndex changes
+  useEffect(() => {
+    if (open && activeIndex >= 0) {
+      optionRefs.current[activeIndex]?.focus();
+    }
+  }, [open, activeIndex]);
+
+  const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setOpen(true);
+      setActiveIndex(0);
+    }
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setOpen(true);
+      setActiveIndex(USERS.length - 1);
+    }
+  };
+
+  const handleOptionKeyDown = (e: React.KeyboardEvent, index: number) => {
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setActiveIndex((index + 1) % USERS.length);
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setActiveIndex((index - 1 + USERS.length) % USERS.length);
+        break;
+      case "Home":
+        e.preventDefault();
+        setActiveIndex(0);
+        break;
+      case "End":
+        e.preventDefault();
+        setActiveIndex(USERS.length - 1);
+        break;
+      case "Escape":
+        e.preventDefault();
+        closeMenu();
+        break;
+      case "Tab":
+        closeMenu();
+        break;
+    }
+  };
 
   return (
     <div ref={ref} className="relative">
       <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-sb-border bg-sb-card hover:border-sb-green/40 transition-colors"
+        ref={triggerRef}
+        onClick={() => {
+          if (open) {
+            closeMenu();
+          } else {
+            setOpen(true);
+            setActiveIndex(0);
+          }
+        }}
+        onKeyDown={handleTriggerKeyDown}
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-sb-border/70 bg-sb-card hover:border-sb-green/30 transition-all duration-200"
         aria-haspopup="listbox"
         aria-expanded={open}
       >
@@ -65,7 +129,7 @@ export function RoleSwitcher({ currentUser, onSwitch }: RoleSwitcherProps) {
         <div
           role="listbox"
           aria-label="Switch user"
-          className="absolute right-0 mt-1 w-52 rounded-lg border border-sb-border bg-sb-card shadow-lg z-50 overflow-hidden"
+          className="absolute right-0 mt-2 w-52 rounded-xl border border-sb-border/70 bg-sb-card shadow-xl shadow-black/20 z-50 overflow-hidden"
         >
           <div className="px-3 py-2 border-b border-sb-border">
             <p className="text-[10px] uppercase tracking-wider text-sb-muted font-semibold">
@@ -73,22 +137,25 @@ export function RoleSwitcher({ currentUser, onSwitch }: RoleSwitcherProps) {
             </p>
           </div>
           <ul className="py-1">
-            {USERS.map((user) => {
+            {USERS.map((user, index) => {
               const isActive = user.id === currentUser.id;
               return (
                 <li key={user.id}>
                   <button
+                    ref={(el) => { optionRefs.current[index] = el; }}
                     role="option"
                     aria-selected={isActive}
+                    tabIndex={activeIndex === index ? 0 : -1}
                     onClick={() => {
                       onSwitch(user);
-                      setOpen(false);
+                      closeMenu();
                     }}
+                    onKeyDown={(e) => handleOptionKeyDown(e, index)}
                     className={`w-full flex items-center justify-between px-3 py-2 text-left transition-colors ${
                       isActive
                         ? "bg-sb-green/10 text-sb-green"
                         : "hover:bg-sb-surface text-foreground"
-                    }`}
+                    } ${activeIndex === index ? "ring-2 ring-sb-green/50 ring-inset" : ""}`}
                   >
                     <div className="flex flex-col min-w-0">
                       <span className="text-sm font-medium truncate">{user.name}</span>

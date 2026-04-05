@@ -22,17 +22,17 @@ function StarIcon({ filled, color }: { filled: boolean; color: string }) {
 }
 
 const RATING_COLORS: Record<number, string> = {
-  1: "text-red-400",
-  2: "text-orange-400",
-  3: "text-yellow-400",
-  4: "text-green-400",
-  5: "text-sb-green-light",
+  1: "text-sb-rating-1",
+  2: "text-sb-rating-2",
+  3: "text-sb-rating-3",
+  4: "text-sb-rating-4",
+  5: "text-sb-rating-5",
 };
 
 function StarRating({ rating }: { rating: number }) {
   const color = RATING_COLORS[Math.min(Math.max(Math.round(rating), 1), 5)] ?? "text-sb-muted";
   return (
-    <div className="flex items-center gap-0.5" aria-label={`Rating: ${rating} out of 5`}>
+    <div className="flex items-center gap-0.5" role="img" aria-label={`Rating: ${rating} out of 5`}>
       {Array.from({ length: 5 }, (_, i) => (
         <StarIcon key={i} filled={i < rating} color={color} />
       ))}
@@ -44,7 +44,7 @@ function StarRating({ rating }: { rating: number }) {
 function WarningIcon() {
   return (
     <svg
-      className="w-3.5 h-3.5 text-red-400 flex-shrink-0"
+      className="w-3.5 h-3.5 text-sb-danger flex-shrink-0"
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden="true"
@@ -62,7 +62,7 @@ export function ReviewCard({ review, reviewer, showPrivateNotes }: ReviewCardPro
   const reviewerName = reviewer?.full_name ?? review.reviewer?.full_name ?? "Unknown Reviewer";
 
   return (
-    <div className="rounded-xl border border-sb-border bg-sb-card p-4 space-y-3">
+    <div className="rounded-xl border border-sb-border/70 bg-sb-card p-4 space-y-3">
       {/* Header row */}
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
@@ -84,14 +84,14 @@ export function ReviewCard({ review, reviewer, showPrivateNotes }: ReviewCardPro
 
       {/* Private notes */}
       {showPrivateNotes && review.private_notes && (
-        <div className="rounded-lg border border-red-500/30 bg-red-500/5 p-3 space-y-1.5">
+        <div className="rounded-lg border border-sb-danger/30 bg-sb-danger/5 p-3 space-y-1.5">
           <div className="flex items-center gap-1.5">
             <WarningIcon />
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-red-400">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-sb-danger">
               Private Notes
             </span>
           </div>
-          <p className="text-sm text-red-300/80 leading-relaxed">{review.private_notes}</p>
+          <p className="text-sm text-sb-danger-muted/80 leading-relaxed">{review.private_notes}</p>
         </div>
       )}
     </div>
