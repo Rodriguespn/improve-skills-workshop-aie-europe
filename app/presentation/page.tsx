@@ -536,6 +536,7 @@ export default function Presentation() {
                 />
               </div>
               <p className="text-xs text-sb-muted">Scan to get the repo</p>
+              <p className="text-[10px] font-mono text-sb-muted/50">github.com/Rodriguespn/improve-skills-workshop-aie-europe</p>
             </div>
           </div>
         </Slide>
