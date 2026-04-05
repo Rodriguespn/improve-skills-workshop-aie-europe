@@ -1,6 +1,6 @@
-# Skill Workshop: Employee Directory
+# Level Up Your Skills: Employee Directory
 
-A demo app for the "Skill Issue" workshop at MCP Dev Summit 2026.
+A demo app for the "Level Up Your Skills" workshop at AI Engineer Europe 2026. Build an agent skill from scratch, discover a critical security flaw, and learn how to catch it with evals.
 
 ## Quick Start
 
@@ -24,8 +24,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | `main` | Starter app — no skills, no evals |
 | `step/1-first-skill` | v1 SKILL.md (basic RLS rules) |
 | `step/2-manual-test` | Agent output from table test |
-| `step/3-wow-moment` | RLS view leak demo |
-| `step/4-iterate` | v2 SKILL.md with view fix |
+| `step/3-break-it` | RLS view leak demo |
+| `step/4-fix-skill` | v2 SKILL.md with view security check |
 | `step/5-eval-setup` | Eval harness + Braintrust |
 
 ## Switching Users
