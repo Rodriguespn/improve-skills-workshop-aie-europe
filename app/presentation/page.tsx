@@ -526,12 +526,12 @@ export default function Presentation() {
               </span>
             </div>
             <div className="stagger flex flex-col items-center gap-2 mt-6">
-              <div className="rounded-xl bg-white p-2">
+              <div className="rounded-xl border border-sb-green/30 bg-sb-card p-2">
                 <QRCodeSVG
                   value="https://github.com/Rodriguespn/improve-skills-workshop-aie-europe"
                   size={96}
-                  bgColor="#ffffff"
-                  fgColor="#090909"
+                  bgColor="transparent"
+                  fgColor="#3ECF8E"
                   level="M"
                 />
               </div>
