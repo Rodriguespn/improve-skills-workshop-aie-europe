@@ -35,17 +35,6 @@ Open [http://localhost:3000/dashboard](http://localhost:3000/dashboard) — the 
 - [Supabase RLS Guide](https://supabase.com/docs/guides/database/postgres/row-level-security)
 - [Claude Code Skills Docs](https://docs.anthropic.com/en/docs/claude-code/skills)
 
-## Workshop Branches
-
-| Branch | What's There |
-|--------|-------------|
-| `main` | Starter app — no skills, no evals |
-| `step/1-first-skill` | v1 SKILL.md (basic RLS rules) |
-| `step/2-manual-test` | Agent output from table test |
-| `step/3-break-it` | RLS view leak demo |
-| `step/4-fix-skill` | v2 SKILL.md with view security check |
-| `step/5-eval-setup` | Eval harness |
-
 ## Switching Users
 
 Use the dropdown in the top-right to switch between:
