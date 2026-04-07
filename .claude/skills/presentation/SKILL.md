@@ -11,14 +11,8 @@ Fetch and display slide content from the **Level Up Your Skills** workshop at AI
 
 ## How to Use
 
-### Via MCP (preferred)
-The workshop MCP server is pre-configured. Use these tools directly:
-- `list_slides` — Get all slide IDs and titles
-- `get_slide` — Get a specific slide by ID
-- `get_all_slides` — Get the entire presentation as markdown
-- `get_workshop_info` — Get workshop metadata and catch-up instructions
+The dev server must be running (`npm run dev`).
 
-### Via API (if dev server is running)
 - `GET http://localhost:3000/api/slides` — All slides as markdown
 - `GET http://localhost:3000/api/slides/{id}` — Single slide as markdown
 
@@ -31,7 +25,7 @@ The workshop MCP server is pre-configured. Use these tools directly:
 | `testing-with-evals` | Testing with Evals |
 | `what-were-doing` | What We're Doing |
 | `demo` | Demo |
-| `braintrust` | Braintrust |
+| `eval-harness` | Eval Harness |
 | `final-remarks` | Final Remarks |
 | `thank-you` | Thank You |
 
@@ -44,5 +38,5 @@ git checkout step/1-first-skill   # Starting point with v1 skill
 git checkout step/2-manual-test   # After manual testing
 git checkout step/3-break-it      # After discovering the RLS leak
 git checkout step/4-fix-skill     # After fixing the skill
-git checkout step/5-eval-setup    # With eval harness + Braintrust
+git checkout step/5-eval-setup    # With eval harness pre-wired
 ```
