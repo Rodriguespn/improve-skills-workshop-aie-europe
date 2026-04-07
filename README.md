@@ -26,7 +26,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `step/2-manual-test` | Agent output from table test |
 | `step/3-break-it` | RLS view leak demo |
 | `step/4-fix-skill` | v2 SKILL.md with view security check |
-| `step/5-eval-setup` | Eval harness + Braintrust |
+| `step/5-eval-setup` | Eval harness |
 
 ## Switching Users
 
