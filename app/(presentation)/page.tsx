@@ -179,7 +179,7 @@ function TerminalBlock({ lines, title, dark }: { lines: string[]; title: string;
 }
 
 /* ─── Main Presentation ─── */
-const TOTAL_SLIDES = 7;
+const TOTAL_SLIDES = 8;
 
 export default function Presentation() {
   const [current, setCurrent] = useState(0);
@@ -541,8 +541,62 @@ export default function Presentation() {
           </div>
         </Slide>
 
-        {/* ─── Slide 5: What Actually Works ─── */}
+        {/* ─── Slide 5: Eval Harness ─── */}
         <Slide active={current === 5}>
+          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-10">
+            Eval Harness
+          </h2>
+          <div className="stagger grid grid-cols-2 gap-10">
+            <Card>
+              <p className="text-xs uppercase tracking-widest text-sb-muted mb-4">File structure</p>
+              <div className="font-mono text-sm leading-7">
+                <div className="text-sb-muted/50">supabase-skill/</div>
+                <div className="ml-4"><span className="text-sb-muted">├── </span><span className="text-white">SKILL.md</span></div>
+                <div className="ml-4"><span className="text-sb-muted">└── </span><span className="text-sb-green">evals/</span></div>
+                <div className="ml-8"><span className="text-sb-muted">└── </span><span className="text-sb-green">evals.json</span></div>
+                <div className="mt-2 text-sb-muted/50">workspace/</div>
+                <div className="ml-4"><span className="text-sb-muted">└── </span><span className="text-sb-muted/50">iteration-1/</span></div>
+                <div className="ml-8"><span className="text-sb-muted">├── </span><span className="text-sb-green">with_skill/</span></div>
+                <div className="ml-12"><span className="text-sb-muted">│&nbsp;&nbsp; ├── </span><span className="text-sb-muted">outputs/</span></div>
+                <div className="ml-12"><span className="text-sb-muted">│&nbsp;&nbsp; └── </span><span className="text-sb-muted">grading.json</span></div>
+                <div className="ml-8"><span className="text-sb-muted">└── </span><span className="text-sb-muted/50">without_skill/</span></div>
+                <div className="ml-12"><span className="text-sb-muted">&nbsp;&nbsp;&nbsp;&nbsp; └── </span><span className="text-sb-muted/50">grading.json</span></div>
+              </div>
+            </Card>
+            <div className="flex flex-col gap-4">
+              <Card>
+                <p className="text-xs uppercase tracking-widest text-sb-muted mb-3">evals.json</p>
+                <div className="font-mono text-xs leading-6 text-sb-muted">
+                  <p><span className="text-sb-muted/50">{"{"}</span></p>
+                  <p className="ml-4"><span className="text-sb-green">&quot;prompt&quot;</span><span className="text-sb-muted/50">: </span><span className="text-amber-300/80">&quot;Check RLS on the employees table&quot;</span><span className="text-sb-muted/50">,</span></p>
+                  <p className="ml-4"><span className="text-sb-green">&quot;assertions&quot;</span><span className="text-sb-muted/50">: [</span></p>
+                  <p className="ml-8"><span className="text-amber-300/80">&quot;Flags views without security_invoker&quot;</span><span className="text-sb-muted/50">,</span></p>
+                  <p className="ml-8"><span className="text-amber-300/80">&quot;Catches tables without RLS&quot;</span></p>
+                  <p className="ml-4"><span className="text-sb-muted/50">]</span></p>
+                  <p><span className="text-sb-muted/50">{"}"}</span></p>
+                </div>
+              </Card>
+              <Card className="border-sb-green/20 bg-sb-green/5">
+                <div className="flex flex-col gap-2 font-mono text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sb-green font-bold">✓</span>
+                    <span className="text-sb-green">with_skill: 4/4 passed</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-red-400 font-bold">✗</span>
+                    <span className="text-red-400">without_skill: 1/4 passed</span>
+                  </div>
+                  <div className="mt-2 pt-2 border-t border-sb-border text-xs text-sb-muted">
+                    delta: <span className="text-sb-green font-bold">+0.75</span>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </Slide>
+
+        {/* ─── Slide 6: Final Remarks ─── */}
+        <Slide active={current === 6}>
           <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-10">
             What Actually Works
           </h2>
@@ -587,8 +641,8 @@ export default function Presentation() {
           </div>
         </Slide>
 
-        {/* ─── Slide 6: Thank You ─── */}
-        <Slide active={current === 6}>
+        {/* ─── Slide 7: Thank You ─── */}
+        <Slide active={current === 7}>
           <Image
             src={dark ? "/slides/bg-globe.svg" : "/slides/bg-globe-light.svg"}
             alt=""
