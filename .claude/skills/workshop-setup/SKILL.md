@@ -46,12 +46,6 @@ npm run dev
    - **Julia Adeyemi** — HR
 3. Open [http://localhost:3000/presentation](http://localhost:3000/presentation) — the workshop slides
 
-## Workshop MCP Server
-
-The workshop MCP server is **pre-configured** in `.claude/settings.json` and will be available automatically. No manual setup needed.
-
-Use `/presentation` to fetch slide content or get help if you're lost during the workshop.
-
 ## Useful Links
 
 - [Supabase Docs](https://supabase.com/docs)

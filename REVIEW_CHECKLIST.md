@@ -14,15 +14,16 @@ Use this to test everything and do a dry run of the workshop.
 - [ ] Slide 2: Testing with Evals — circular cycle diagram, source attribution bottom-left
 - [ ] Slide 3: What We're Doing — two columns, Write/Test/Break/Fix cards
 - [ ] Slide 4: Demo — QR code is green, URL visible below, links to GitHub repo
-- [ ] Slide 5: What Actually Works — 3 icon cards + April 9 talk card with time/room
-- [ ] Slide 6: Thank You — @rodriguespn23, pedro.rodrigues@supabase.io, talk card
+- [ ] Slide 5: Eval Harness — two-column layout: file tree on left, evals.json snippet + pass/fail results on right
+- [ ] Slide 6: Final Remarks — 3 icon cards (Measure Everything, Principles Over Templates, Small Iterations Win) + April 9 talk card
+- [ ] Slide 7: Thank You — @rodriguespn23, pedro.rodrigues@supabase.io
 
 ### Presentation (local — should match remote)
 - [ ] `npm run dev` → open http://localhost:3000
-- [ ] Same 7 slides, same content
+- [ ] Same 8 slides, same content
 
 ### API Routes
-- [ ] `curl http://localhost:3000/api/slides` → full markdown, 7 slides
+- [ ] `curl http://localhost:3000/api/slides` → full markdown, 8 slides
 - [ ] `curl http://localhost:3000/api/slides/demo` → single slide markdown
 - [ ] `curl http://localhost:3000/api/slides/bogus` → 404 with available IDs
 
