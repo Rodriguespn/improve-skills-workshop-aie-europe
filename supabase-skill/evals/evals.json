@@ -1,0 +1,37 @@
+{
+  "skill_name": "supabase-security",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use the Supabase security skill to audit the department_stats view in the database. Is it safe to expose to all authenticated users?",
+      "expected_output": "The skill should identify that the department_stats view is missing SECURITY INVOKER and bypasses RLS, exposing salary data to users who shouldn't have access.",
+      "assertions": [
+        "Identifies the department_stats view as a security risk",
+        "Mentions security_invoker or SECURITY INVOKER",
+        "Explains that the view bypasses RLS for the underlying tables",
+        "Recommends adding WITH (security_invoker = true) or equivalent fix"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Use the Supabase security skill to check whether all tables in the database have row level security enabled.",
+      "expected_output": "The skill should flag the salary_bands table as not having RLS enabled, and list all other tables with their RLS status.",
+      "assertions": [
+        "Lists all tables and their RLS status",
+        "Specifically flags salary_bands as missing RLS",
+        "Does not report false positives on tables that correctly have RLS enabled"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Use the Supabase security skill to review the performance_reviews table. Can a regular employee see data they shouldn't?",
+      "expected_output": "The skill should catch that RLS allows employees to read their own review rows, but the table includes a private_notes column that contains sensitive manager commentary not intended for the reviewee.",
+      "assertions": [
+        "Reviews the RLS policies on performance_reviews",
+        "Identifies that reviewees can access their own rows",
+        "Flags that private_notes is exposed to reviewees via row-level access",
+        "Recommends column-level restrictions or moving private_notes to a separate table"
+      ]
+    }
+  ]
+}
