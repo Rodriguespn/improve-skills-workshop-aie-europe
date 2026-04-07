@@ -179,7 +179,7 @@ function TerminalBlock({ lines, title, dark }: { lines: string[]; title: string;
 }
 
 /* ─── Main Presentation ─── */
-const TOTAL_SLIDES = 8;
+const TOTAL_SLIDES = 7;
 
 export default function Presentation() {
   const [current, setCurrent] = useState(0);
@@ -641,43 +641,6 @@ export default function Presentation() {
           </div>
         </Slide>
 
-        {/* ─── Slide 7: Thank You ─── */}
-        <Slide active={current === 7}>
-          <Image
-            src={dark ? "/slides/bg-globe.svg" : "/slides/bg-globe-light.svg"}
-            alt=""
-            fill
-            className="object-cover opacity-20"
-          />
-          <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full z-[2] pointer-events-none blur-[120px] bg-sb-green/15" />
-          <div className="relative z-10 flex flex-col items-center text-center gap-6">
-            <div className="stagger"><SupabaseLogo className="w-14 h-14 mx-auto" /></div>
-            <h2 className="stagger text-6xl font-extrabold font-[var(--font-display)] tracking-tight">
-              Thank You
-            </h2>
-            <p className="stagger text-xl text-sb-muted max-w-xl">Now go level up your skills.</p>
-            <div className="stagger flex items-center gap-6 mt-6 text-sm text-sb-muted">
-              <span>Pedro Rodrigues</span>
-              <span className="w-1 h-1 rounded-full bg-sb-border" />
-              <span>@rodriguespn23</span>
-              <span className="w-1 h-1 rounded-full bg-sb-border" />
-              <span>pedro.rodrigues@supabase.io</span>
-            </div>
-            <div className="stagger mt-6">
-              <Card className="border-sb-green/20 bg-sb-green/5 inline-block">
-                <div className="flex items-center gap-3">
-                  <svg className="w-4 h-4 text-sb-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                  </svg>
-                  <div>
-                    <p className="text-sm font-bold text-sb-green">Combine Skills and MCP to Close the Context Gap</p>
-                    <p className="text-xs text-sb-muted mt-0.5">April 9 &middot; 3:10&ndash;3:30pm &middot; St. James</p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </Slide>
 
         {/* ─── Bottom navigation bar ─── */}
         <div className="absolute bottom-0 left-0 right-0 z-40 flex items-center justify-between px-8 py-4">
