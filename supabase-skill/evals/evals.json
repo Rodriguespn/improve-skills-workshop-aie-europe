@@ -3,14 +3,13 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Use the Supabase security skill to audit the department_stats view in the database. Is it safe to expose to all authenticated users?",
-      "expected_output": "The skill should identify that the department_stats view is missing SECURITY INVOKER and bypasses RLS, exposing salary data to users who shouldn't have access.",
+      "prompt": "Create a `department_stats` view that shows headcount and average salary broken down by department.",
+      "expected_output": "The agent creates the department_stats_view view with security_invoker=true so that RLS on the underlying profiles table is enforced for the querying user.",
       "assertions": [
-        "Identifies the department_stats view as a security risk",
-        "Mentions security_invoker or SECURITY INVOKER",
-        "Explains that the view bypasses RLS for the underlying tables",
-        "Recommends adding WITH (security_invoker = true) or equivalent fix",
-        "Does not execute DDL to modify the database — the view is audited only, not altered"
+        "The department_stats_view view exists in the database after the agent runs",
+        "The view has security_invoker=true set in pg_class.reloptions",
+        "The view selects from the profiles table",
+        "The view includes headcount, avg_salary, min_salary, and max_salary columns"
       ]
     }
   ]
