@@ -60,7 +60,7 @@ export const slides: Slide[] = [
       "Test it manually against a real database",
       "Discover an RLS view leak",
       "Iterate on the skill to catch it",
-      "Automate the whole loop with Braintrust",
+      "Validate with the eval harness",
     ],
   },
   {
@@ -68,6 +68,16 @@ export const slides: Slide[] = [
     title: "Demo",
     subtitle: "From zero to a skill that knows your product",
     bullets: ["Write", "Test", "Break", "Fix"],
+  },
+  {
+    id: "eval-harness",
+    title: "Eval Harness",
+    bullets: [
+      "Prompts and assertions defined in evals.json",
+      "Run with_skill vs without_skill in isolated sessions",
+      "Grade assertions, capture timing",
+      "Benchmark delta shows the skill's value",
+    ],
   },
   {
     id: "final-remarks",
@@ -126,5 +136,5 @@ export const STEP_BRANCHES = [
   { branch: "step/2-manual-test", description: "Test the skill manually against a live database" },
   { branch: "step/3-break-it", description: "Discover the RLS view leak" },
   { branch: "step/4-fix-skill", description: "Iterate on the skill to catch the leak" },
-  { branch: "step/5-eval-setup", description: "Automate testing with Braintrust evals" },
+  { branch: "step/5-eval-setup", description: "Run the eval harness against the fixed skill" },
 ];
