@@ -97,39 +97,6 @@ export const slides: Slide[] = [
   },
 ];
 
-export function slideToMarkdown(slide: Slide): string {
-  const lines: string[] = [];
-
-  lines.push(`# ${slide.title}`);
-
-  if (slide.subtitle) {
-    lines.push(`*${slide.subtitle}*`);
-  }
-
-  lines.push("");
-
-  for (const bullet of slide.bullets) {
-    lines.push(`- ${bullet}`);
-  }
-
-  if (slide.source) {
-    lines.push("");
-    lines.push(`> Source: [${slide.source.label}](${slide.source.url})`);
-  }
-
-  if (slide.notes) {
-    lines.push("");
-    lines.push(`<!-- Notes: ${slide.notes} -->`);
-  }
-
-  return lines.join("\n");
-}
-
-export function allSlidesToMarkdown(): string {
-  const header = `# ${WORKSHOP_TITLE}\n**${WORKSHOP_EVENT}** — ${WORKSHOP_PRESENTER}, ${WORKSHOP_ORG}\n`;
-  const body = slides.map(slideToMarkdown).join("\n\n---\n\n");
-  return `${header}\n---\n\n${body}\n`;
-}
 
 export const STEP_BRANCHES = [
   { branch: "step/1-first-skill", description: "Write the initial Supabase security skill" },

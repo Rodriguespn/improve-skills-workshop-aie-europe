@@ -132,17 +132,6 @@ h1, h2, h3 {
 .stagger > *:nth-child(9) { animation-delay: 0.36s; }
 .stagger > *:nth-child(10) { animation-delay: 0.4s; }
 
-/* ---- Leak warning ---- */
-
-@keyframes leak-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--theme-danger) 40%, transparent); }
-  50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--theme-danger) 0%, transparent); }
-}
-
-.leak-warning {
-  animation: leak-pulse 2s ease-in-out infinite;
-  border-color: var(--theme-danger);
-}
 
 /* ---- Card glow effect ---- */
 

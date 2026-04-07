@@ -1,6 +1,4 @@
 -- Compensation bands by level and department
--- NOTE: RLS is intentionally NOT enabled on this table.
--- This is a security gap that a well-written skill should catch.
 
 create table public.salary_bands (
   id uuid primary key default gen_random_uuid(),
