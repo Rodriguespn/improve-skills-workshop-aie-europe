@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "local-mcp-server": {
-      "type": "http",
-      "url": "http://localhost:54321/mcp"
-    }
-  }
-}
