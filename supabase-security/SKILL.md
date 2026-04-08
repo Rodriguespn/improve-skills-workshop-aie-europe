@@ -1,10 +1,9 @@
 ---
 name: supabase-security
-description: >
-  Use when writing any SQL for Supabase — creating views, tables, functions, or RLS policies.
+description: "Use when writing any SQL for Supabase — creating views, tables, functions, or RLS policies.
   Supabase has several security behaviors that differ from vanilla Postgres in ways that silently
   create vulnerabilities. This skill makes sure those traps are caught before they ship.
-  Trigger whenever the user is working with Supabase schema, migrations, views, or row-level security.
+  Trigger whenever the user is working with Supabase schema, migrations, views, or row-level security."
 ---
 
 # Supabase Security
