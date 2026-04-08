@@ -298,57 +298,71 @@ export default function Presentation() {
 
         {/* ─── Slide 1: What Are Skills ─── */}
         <Slide active={current === 1}>
-          <h2 className="stagger text-5xl font-extrabold font-[var(--font-display)] tracking-tight mb-2">
-            What Are Skills
+          <h2 className="font-[var(--font-display)] font-extrabold text-5xl tracking-tight stagger">
+            What are <span className="text-sb-green">Skills</span>?
           </h2>
-          <p className="stagger text-lg text-sb-muted mb-8">
-            Reusable instructions that shape how AI agents approach tasks
+          <p className="mt-4 text-sb-muted text-lg leading-relaxed stagger">
+            Folders containing instructions, scripts, and resources that agents discover and load dynamically when relevant to a task.
           </p>
-          <div className="stagger grid grid-cols-3 gap-6 mb-8">
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={1} />
-                <div>
-                  <h3 className="font-bold mb-1">Frontmatter</h3>
-                  <p className="text-sm text-sb-muted">Name, description, triggers for discovery</p>
-                </div>
+          <div className="mt-8 flex gap-6 stagger" style={{ minHeight: 320 }}>
+            {/* Skill file preview — inverts with theme for contrast */}
+            <div className={`flex-1 rounded-xl overflow-hidden shadow-lg border ${dark ? "border-sb-border bg-white" : "border-[#2e2e2e] bg-[#1a1a1a]"}`}>
+              <div className={`flex items-center gap-2 px-4 py-3 border-b ${dark ? "border-sb-border bg-white" : "border-[#2e2e2e] bg-[#1a1a1a]"}`}>
+                <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+                <span className={`ml-3 text-xs font-mono ${dark ? "text-[#999]" : "text-[#888]"}`}>pdf-processing/SKILL.md</span>
               </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={2} />
-                <div>
-                  <h3 className="font-bold mb-1">Instructions</h3>
-                  <p className="text-sm text-sb-muted">Markdown body with domain expertise and best practices</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="card-hover">
-              <div className="flex items-start gap-3">
-                <NumberBadge n={3} />
-                <div>
-                  <h3 className="font-bold mb-1">Context</h3>
-                  <p className="text-sm text-sb-muted">Reference docs and examples agents can consult</p>
-                </div>
-              </div>
-            </Card>
+              <pre className={`p-5 text-[13px] leading-relaxed overflow-hidden ${dark ? "text-[#333]" : "text-[#e0e0e0]"}`}>
+                <code>
+                  <span className={dark ? "text-[#ccc]" : "text-[#555]"}>---</span>{"\n"}
+                  <span className={dark ? "text-[#24B47E]" : "text-[#3ECF8E]"}>name</span><span className={dark ? "text-[#999]" : "text-[#888]"}>:</span> pdf-processing{"\n"}
+                  <span className={dark ? "text-[#24B47E]" : "text-[#3ECF8E]"}>description</span><span className={dark ? "text-[#999]" : "text-[#888]"}>:</span> Extract PDF text, fill{"\n"}
+                  {"  "}forms, merge files. Use when{"\n"}
+                  {"  "}handling PDFs.{"\n"}
+                  <span className={dark ? "text-[#ccc]" : "text-[#555]"}>---</span>{"\n\n"}
+                  <span className={dark ? "text-[#999]" : "text-[#888]"}>## When to use this skill</span>{"\n"}
+                  Use this skill when the user{"\n"}
+                  needs to work with PDF files...{"\n\n"}
+                  <span className={dark ? "text-[#999]" : "text-[#888]"}>## How to extract text</span>{"\n"}
+                  1. Use pdfplumber for text...{"\n\n"}
+                  <span className={dark ? "text-[#999]" : "text-[#888]"}>## How to fill forms</span>{"\n"}
+                  ...
+                </code>
+              </pre>
+            </div>
+            {/* Anatomy — aligned to code block height */}
+            <div className="flex-1 flex flex-col gap-3 justify-between">
+              {[
+                {
+                  label: "Frontmatter",
+                  desc: "Name and description — agents use this lightweight index (~100 tokens) to discover and select the right skill",
+                  icon: <svg className="w-7 h-7 text-sb-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /><path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6z" /></svg>,
+                },
+                {
+                  label: "Instructions",
+                  desc: "Procedural knowledge, best practices, and domain expertise in natural language — loaded on demand (<5k tokens)",
+                  icon: <svg className="w-7 h-7 text-sb-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>,
+                },
+                {
+                  label: "Bundled Resources",
+                  desc: "Optional scripts/, references/, and assets/ — executable code, docs, and templates the agent uses during execution",
+                  icon: <svg className="w-7 h-7 text-sb-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg>,
+                },
+              ].map((part, i) => (
+                <Card key={i} className="flex items-center gap-4 flex-1">
+                  {part.icon}
+                  <div>
+                    <h4 className="font-[var(--font-display)] font-bold text-foreground">{part.label}</h4>
+                    <p className="mt-1 text-sm text-sb-muted leading-relaxed">{part.desc}</p>
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
-          <div className="stagger">
-            <TerminalBlock
-              dark={dark}
-              title="terminal"
-              lines={[
-                "$ cat .claude/skills/supabase-security/SKILL.md",
-                "---",
-                "name: supabase-security",
-                "description: Review Supabase RLS policies",
-                "user-invocable: true",
-                "---",
-                "# Supabase Security Review",
-                "Check all tables have RLS enabled...",
-              ]}
-            />
-          </div>
+          <p className="absolute bottom-12 left-20 text-xs text-sb-muted/50">
+            Source: agentskills.io/what-are-skills
+          </p>
         </Slide>
 
         {/* ─── Slide 2: Testing Skills with Evals ─── */}
