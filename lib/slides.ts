@@ -80,14 +80,10 @@ export const slides: Slide[] = [
     ],
   },
   {
-    id: "final-remarks",
-    title: "Final Remarks",
-    bullets: [
-      "Measure everything — vibes don't scale",
-      "Principles over templates",
-      "Small iterations, fast feedback",
-      "Combine Skills and MCP to Close the Context Gap — April 9, 3:10-3:30pm, St. James",
-    ],
+    id: "thank-you",
+    title: "Thank You",
+    subtitle: "Now go level up your skills.",
+    bullets: ["@rodriguespn23", "pedro.rodrigues@supabase.io"],
   },
 ];
 
